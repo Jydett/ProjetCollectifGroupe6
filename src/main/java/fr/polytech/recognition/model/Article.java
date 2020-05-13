@@ -23,8 +23,8 @@ public class Article implements Identifiable<Long> {
 
     private String name;
 
-    @OneToMany
-    private ArticleType article;
+    @ManyToOne
+    private ArticleType articleType;
 
     private String vendorLink;
 

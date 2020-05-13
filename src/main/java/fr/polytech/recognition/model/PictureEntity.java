@@ -1,6 +1,7 @@
 package fr.polytech.recognition.model;
 
 import fr.polytech.recognition.utils.ImageFormat;
+import lombok.NoArgsConstructor;
 
 import javax.imageio.ImageIO;
 import javax.persistence.Embeddable;
@@ -8,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 
 @Embeddable
+@NoArgsConstructor
 public class PictureEntity implements Serializable {
     private byte[] imageBytes;
 
