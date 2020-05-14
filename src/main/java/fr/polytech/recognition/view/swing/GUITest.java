@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 import com.formdev.flatlaf.intellijthemes.FlatCyanLightIJTheme;
 
@@ -78,7 +79,7 @@ public class GUITest extends JFrame {
                 imageLabel.setFont(new Font("Avenir", Font.PLAIN, 13));
                 imageLabel.setEnabled(false);
                 imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
-                imageLabel.setIcon(new ImageIcon("/Users/yinyuman/icons/001-image.png"));
+                imageLabel.setIcon(new ImageIcon(this.getClass().getResource("/images/icon-image.png")));
                 ImportPanel.add(imageLabel);
                 imageLabel.setBounds(200, 120, 525, 360);
 
@@ -123,7 +124,7 @@ public class GUITest extends JFrame {
                     imageChosen.setFont(new Font("Avenir", Font.PLAIN, 13));
                     imageChosen.setEnabled(false);
                     imageChosen.setHorizontalAlignment(SwingConstants.CENTER);
-                    imageChosen.setIcon(new ImageIcon("/Users/yinyuman/icons/001-image.png"));
+                    imageChosen.setIcon(new ImageIcon(this.getClass().getResource("/images/icon-image.png")));
                     splitPaneInResult.setLeftComponent(imageChosen);
 
                     //======== scrollPane ========
@@ -177,7 +178,7 @@ public class GUITest extends JFrame {
                     imageCharacter.setFont(new Font("Avenir", Font.PLAIN, 13));
                     imageCharacter.setEnabled(false);
                     imageCharacter.setHorizontalAlignment(SwingConstants.CENTER);
-                    imageCharacter.setIcon(new ImageIcon("/Users/yinyuman/icons/001-image.png"));
+                    imageCharacter.setIcon(new ImageIcon(this.getClass().getResource("/images/icon-image.png")));
                     splitPaneInCharacter.setLeftComponent(imageCharacter);
 
                     //======== scrollPane2 ========
