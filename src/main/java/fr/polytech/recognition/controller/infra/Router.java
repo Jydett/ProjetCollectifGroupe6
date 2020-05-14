@@ -1,10 +1,11 @@
 package fr.polytech.recognition.controller.infra;
 
-import fr.polytech.recognition.controller.ChooseImageController;
 import fr.polytech.recognition.controller.infra.context.ContextHolder;
 import fr.polytech.recognition.controller.infra.impl.SwingContextHolder;
 import fr.polytech.recognition.controller.routingevent.Event;
 import fr.polytech.recognition.controller.routingevent.EventManager;
+import fr.polytech.recognition.dao.context.DaoContext;
+import fr.polytech.recognition.dao.context.impl.NoDaoContext;
 
 import javax.swing.*;
 import java.util.logging.Logger;
@@ -12,7 +13,7 @@ import java.util.logging.Logger;
 public class Router {
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new Router(new SwingContextHolder()));
+        SwingUtilities.invokeLater(() -> new Router(new SwingContextHolder(), new NoDaoContext()));
     }
 
     private static final Logger LOGGER = Logger.getLogger("Router");
@@ -22,7 +23,8 @@ public class Router {
     private final EventManager eventManager;
     private final ContextHolder contextHolder;
 
-    public Router(ContextHolder contextHolder) {
+    public Router(ContextHolder contextHolder, DaoContext daoContext) {
+        daoContext.init();
         this.contextHolder = contextHolder;
         registry = new ControllerRegistry(this);
         eventManager = new EventManager(registry);

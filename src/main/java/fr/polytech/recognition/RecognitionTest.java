@@ -35,9 +35,9 @@ public class RecognitionTest extends JFrame {
     }
 
     private static final String MODELPATH;
-    private static List<String> LABELS;
+    private static final List<String> LABELS;
     private static byte[] GRAPH_DEF;
-    private static Graph GRAPH;
+    private static final Graph GRAPH;
     private final JLabel img = new JLabel();
     private final JFileChooser jFileChooser = new JFileChooser();
 

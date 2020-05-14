@@ -51,7 +51,7 @@ public class EventManager {
 
     @AllArgsConstructor
     public class EventRegistration {
-        private Object parent;
-        private Method toCall;
+        private final Object parent;
+        private final Method toCall;
     }
 }

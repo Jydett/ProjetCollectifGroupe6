@@ -13,8 +13,8 @@ import java.util.Optional;
 @AllArgsConstructor
 public class SwingViewFactory implements ViewFactory {
 
-    private SwingContext context;
-    private ControllerRegistry controllerRegistry;
+    private final SwingContext context;
+    private final ControllerRegistry controllerRegistry;
 
     @Override
     public <V> V getView(Class<V> viewClass) {

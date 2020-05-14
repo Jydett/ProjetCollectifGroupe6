@@ -1,7 +1,10 @@
 package fr.polytech.recognition.controller.infra;
 
+import fr.polytech.recognition.controller.infra.di.Inject;
+import fr.polytech.recognition.controller.infra.di.InjectionManager;
 import org.reflections.Reflections;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Optional;
@@ -21,8 +24,15 @@ public final class ControllerRegistry {
                 .getTypesAnnotatedWith(ControllerRegistration.class);
         registeredControllers.forEach(controllerClass -> {
             try {
+                Object controller = controllerClass.getConstructors()[0].newInstance(router);
+                for (Field field : controller.getClass().getFields()) {
+                    if (field.getAnnotation(Inject.class) != null) {
+                        field.setAccessible(true);
+                        field.set(controller, InjectionManager.get(field.getType()));
+                    }
+                }
                 CONTROLLERS.put(controllerClass.getAnnotation(ControllerRegistration.class).name(),
-                        (Controller) controllerClass.getConstructors()[0].newInstance(router));
+                        (Controller) controller);
             } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
                 e.printStackTrace();
             }

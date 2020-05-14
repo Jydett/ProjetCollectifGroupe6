@@ -6,6 +6,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class EventStatus {
-    private boolean canceled;
-    private String message;
+    private final boolean canceled;
+    private final String message;
 }

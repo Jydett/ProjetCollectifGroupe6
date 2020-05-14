@@ -9,5 +9,5 @@ import java.io.File;
 @Getter
 public class ImageChoosenEvent implements Event {
 
-    private File fileSelected;
+    private final File fileSelected;
 }
