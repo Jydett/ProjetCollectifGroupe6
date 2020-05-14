@@ -15,7 +15,8 @@ public class SwingImageChoosenView extends SwingView implements ImageChosenView 
     }
 
     protected void initialize() {
-        frame.setContentPane(new JLabel("Image choisie !" + controller.getSelectedImage()));
+        frame.setTitle("2eme view");
+
     }
 
 }

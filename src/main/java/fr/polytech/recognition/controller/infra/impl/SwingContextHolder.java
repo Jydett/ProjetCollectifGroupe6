@@ -8,10 +8,10 @@ import lombok.Getter;
 public class SwingContextHolder implements ContextHolder {
 
     private SwingViewFactory viewFactory;
-    private SwingContext currentContext;
+    private SwingViewContext currentContext;
 
     public void init(ControllerRegistry registry) {
-        currentContext = new SwingContext();
+        currentContext = new SwingViewContext();
         viewFactory = new SwingViewFactory(currentContext, registry);
     }
 }

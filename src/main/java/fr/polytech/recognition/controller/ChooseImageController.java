@@ -4,10 +4,11 @@ import fr.polytech.recognition.controller.infra.Controller;
 import fr.polytech.recognition.controller.infra.ControllerRegistration;
 import fr.polytech.recognition.controller.infra.Router;
 import fr.polytech.recognition.controller.infra.di.Inject;
-import fr.polytech.recognition.controller.routingevent.ImageChoosenEvent;
+import fr.polytech.recognition.controller.routingevent.events.ImageChoosenEvent;
 import fr.polytech.recognition.dao.article.ArticleDao;
 import fr.polytech.recognition.view.ChooseImageView;
 
+import java.awt.event.ActionEvent;
 import java.io.File;
 
 @ControllerRegistration(name = "chooseImage")
@@ -22,6 +23,10 @@ public class ChooseImageController extends Controller<ChooseImageView> {
 
     public void init() {
         setView(rooter.createView(ChooseImageView.class));
+    }
+
+    public void onImportButtonClicked(ActionEvent actionEvent) {
+        imageChoosen(currentView.chooseImage());
     }
 
     public void imageChoosen(File selectedFile) {

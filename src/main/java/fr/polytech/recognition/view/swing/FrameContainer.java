@@ -4,7 +4,7 @@ import lombok.Getter;
 
 import javax.swing.*;
 
-public class FrameContainer {
+public class FrameContainer {//TODO remplacer en swing context
     @Getter
     public JFrame frame;
 
