@@ -30,4 +30,5 @@ public class Article implements Identifiable<Long> {
 
     @Embedded
     private PictureEntity picture;
+
 }

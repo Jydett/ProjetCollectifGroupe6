@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 
 import javax.imageio.ImageIO;
 import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
@@ -13,18 +15,19 @@ import java.io.*;
 public class PictureEntity implements Serializable {
     private byte[] imageBytes;
 
-    public PictureEntity(BufferedImage image, ImageFormat format) throws IOException {
-        setImage(image, format);
-    }
+    @Enumerated(EnumType.STRING)
+    private ImageFormat format;
 
-    public BufferedImage getImage() throws IOException {
+
+    public BufferedImage asBufferedImage() throws IOException {
         InputStream in = new ByteArrayInputStream(imageBytes);
         return ImageIO.read(in);
     }
 
-    public void setImage(BufferedImage image, ImageFormat format) throws IOException {
+    public void setBufferedImage(BufferedImage image, ImageFormat format) throws IOException {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         ImageIO.write(image, format.getExtention(), out);
         imageBytes = out.toByteArray();
+        this.format = format;
     }
 }
