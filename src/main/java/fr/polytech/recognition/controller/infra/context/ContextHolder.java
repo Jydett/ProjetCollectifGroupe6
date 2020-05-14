@@ -5,7 +5,7 @@ import fr.polytech.recognition.controller.infra.ViewFactory;
 
 public interface ContextHolder {
 
-    Context getCurrentContext();
+    ViewContext getCurrentContext();
 
     ViewFactory getViewFactory();
 

@@ -4,7 +4,7 @@ import fr.polytech.recognition.controller.infra.Controller;
 import fr.polytech.recognition.controller.infra.ControllerRegistration;
 import fr.polytech.recognition.controller.infra.Router;
 import fr.polytech.recognition.controller.routingevent.EventHandler;
-import fr.polytech.recognition.controller.routingevent.ImageChoosenEvent;
+import fr.polytech.recognition.controller.routingevent.events.ImageChoosenEvent;
 import fr.polytech.recognition.view.ImageChosenView;
 
 import java.io.File;

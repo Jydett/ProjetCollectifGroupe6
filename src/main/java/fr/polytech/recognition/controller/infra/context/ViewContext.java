@@ -1,5 +1,5 @@
 package fr.polytech.recognition.controller.infra.context;
 
-public interface Context {
+public interface ViewContext {
     void init();
 }

@@ -5,10 +5,8 @@ import fr.polytech.recognition.dao.article.ArticleDao;
 import fr.polytech.recognition.model.Article;
 import fr.polytech.recognition.model.ArticleType;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import java.util.Collection;
-import java.util.Optional;
 
 public class HibernateArticleDao extends HibernateDao<Long, Article> implements ArticleDao {
 
