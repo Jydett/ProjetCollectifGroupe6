@@ -1,5 +1,6 @@
 package fr.polytech.recognition.view.swing;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import lombok.Getter;
 
 import javax.swing.*;
@@ -9,6 +10,7 @@ public class FrameContainer {//TODO remplacer en swing context
     public JFrame frame;
 
     public FrameContainer() {
+        FlatLightLaf.install();
         this.frame = new JFrame();
     }
 
