@@ -20,7 +20,7 @@ public class SwingChooseImageView extends SwingView implements ChooseImageView {
     }
 
     protected void initialize() {
-        frame.setTitle("Choose an image");
+        frame.setTitle("Application");
         setLayout(new BorderLayout());
         JButton importImage = new JButton("Importer image");
         importImage.addActionListener(controller::onImportButtonClicked);

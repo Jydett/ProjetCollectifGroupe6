@@ -1,5 +1,6 @@
 package fr.polytech.recognition;
 
+import fr.polytech.recognition.view.swing.GUITest;
 import org.tensorflow.Graph;
 import org.tensorflow.Session;
 import org.tensorflow.Tensor;
@@ -11,11 +12,8 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -29,7 +27,7 @@ public class RecognitionTest extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            JFrame jFrame = new RecognitionTest();
+            JFrame jFrame = new GUITest();
             jFrame.setVisible(true);
         });
     }

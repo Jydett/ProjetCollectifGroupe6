@@ -1,6 +1,6 @@
 package fr.polytech.recognition.view.swing;
 
-import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.intellijthemes.FlatCyanLightIJTheme;
 import lombok.Getter;
 
 import javax.swing.*;
@@ -10,7 +10,7 @@ public class FrameContainer {//TODO remplacer en swing context
     public JFrame frame;
 
     public FrameContainer() {
-        FlatLightLaf.install();
+        FlatCyanLightIJTheme.install();
         this.frame = new JFrame();
     }
 
