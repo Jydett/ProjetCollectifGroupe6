@@ -69,13 +69,13 @@ public class Launcher {
 
 
         //Ajout dans la BDD
-//        hibernateArticleTypeDao.saveOrCreate(jeans);
-//        hibernateArticleTypeDao.saveOrCreate(chemises);
-//
-//        hibernateArticleDao.saveOrCreate(article1);
-//        hibernateArticleDao.saveOrCreate(article2);
-//        hibernateArticleDao.saveOrCreate(article3);
-//        hibernateArticleDao.saveOrCreate(article4);
+        hibernateArticleTypeDao.saveOrCreate(jeans);
+        hibernateArticleTypeDao.saveOrCreate(chemises);
+
+        hibernateArticleDao.saveOrCreate(article1);
+        hibernateArticleDao.saveOrCreate(article2);
+        hibernateArticleDao.saveOrCreate(article3);
+        hibernateArticleDao.saveOrCreate(article4);
 
 
         //Récupération d'une liste article en fonction du type d'article "jeans"
