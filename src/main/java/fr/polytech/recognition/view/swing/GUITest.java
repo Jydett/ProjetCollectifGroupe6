@@ -109,7 +109,8 @@ public class GUITest extends JFrame {
                     ImportPanel.setPreferredSize(preferredSize);
                 }
             }
-            TabbedPanel.addTab("Importer image", ImportPanel);
+            ImageIcon icon = new ImageIcon(this.getClass().getResource("/images/icon-image-s.png"));
+            TabbedPanel.addTab("  Importer image      ",icon,ImportPanel);
 
             //======== ResultPanel ========
             {
@@ -146,7 +147,7 @@ public class GUITest extends JFrame {
                     }
                 });
                 ResultPanel.add(btnNewImportInResult);
-                btnNewImportInResult.setBounds(0, 470, 290, 40);
+                btnNewImportInResult.setBounds(50, 470, 290, 40);
 
                 {
                     // compute preferred size
@@ -163,7 +164,7 @@ public class GUITest extends JFrame {
                     ResultPanel.setPreferredSize(preferredSize);
                 }
             }
-            TabbedPanel.addTab("R\u00e9sultat de la reconnaissance ", ResultPanel);
+            TabbedPanel.addTab("  R\u00e9sultat de la reconnaissance      ", ResultPanel);
 
             //======== panel1 ========
             {
@@ -200,7 +201,7 @@ public class GUITest extends JFrame {
                     }
                 });
                 CharacterPanel.add(btnNewImportInCharacter);
-                btnNewImportInCharacter.setBounds(0, 470, 290, 40);
+                btnNewImportInCharacter.setBounds(50, 470, 290, 40);
 
                 {
                     // compute preferred size
@@ -217,9 +218,9 @@ public class GUITest extends JFrame {
                     CharacterPanel.setPreferredSize(preferredSize);
                 }
             }
-            TabbedPanel.addTab("Caract\u00e9ristique de l\u2019article", CharacterPanel);
+            TabbedPanel.addTab("      Caract\u00e9ristique de l\u2019article      ", CharacterPanel);
         }
-        contentPane.add(TabbedPanel);
+        contentPane.add(TabbedPanel,"Center");
         TabbedPanel.setBounds(0, 0, 920, 580);
 
         {
