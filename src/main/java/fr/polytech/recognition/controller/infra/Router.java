@@ -1,7 +1,8 @@
 package fr.polytech.recognition.controller.infra;
 
-import fr.polytech.recognition.controller.infra.context.ContextHolder;
-import fr.polytech.recognition.controller.infra.impl.SwingContextHolder;
+import fr.polytech.recognition.controller.Controller;
+import fr.polytech.recognition.context.ContextHolder;
+import fr.polytech.recognition.context.impl.SwingContextHolder;
 import fr.polytech.recognition.controller.routingevent.Event;
 import fr.polytech.recognition.controller.routingevent.EventManager;
 import fr.polytech.recognition.dao.context.DaoContext;
@@ -27,11 +28,10 @@ public class Router {
         daoContext.init();
         this.contextHolder = contextHolder;
         registry = new ControllerRegistry(this);
-        eventManager = new EventManager(registry);
         contextHolder.init(registry);
 
-        registry.initControllers();
         contextHolder.getCurrentContext().init();
+        eventManager = new EventManager(registry);
         currentController = registry.getController("chooseImage").get();
         currentController.showView();
     }

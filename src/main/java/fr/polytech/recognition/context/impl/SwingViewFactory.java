@@ -1,9 +1,9 @@
-package fr.polytech.recognition.controller.infra.impl;
+package fr.polytech.recognition.context.impl;
 
 import fr.polytech.recognition.controller.ChooseImageController;
 import fr.polytech.recognition.controller.ImageChosenController;
 import fr.polytech.recognition.controller.infra.ControllerRegistry;
-import fr.polytech.recognition.controller.infra.ViewFactory;
+import fr.polytech.recognition.context.ViewFactory;
 import fr.polytech.recognition.view.swing.SwingChooseImageView;
 import fr.polytech.recognition.view.swing.SwingImageChoosenView;
 import lombok.AllArgsConstructor;

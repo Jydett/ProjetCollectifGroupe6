@@ -1,4 +1,4 @@
-package fr.polytech.recognition.controller.infra;
+package fr.polytech.recognition.context;
 
 public interface ViewFactory {
 

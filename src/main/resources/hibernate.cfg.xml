@@ -15,8 +15,8 @@
         <property name="current_session_context_class">thread</property>
         <property name="hibernate.connection.autoReconnect">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
-        <mapping class="fr.polytech.recognition.model.Article"></mapping>
-        <mapping class="fr.polytech.recognition.model.ArticleType"></mapping>
+        <mapping class="fr.polytech.recognition.model.database.Article"></mapping>
+        <mapping class="fr.polytech.recognition.model.database.ArticleType"></mapping>
     </session-factory>
 
 </hibernate-configuration>
