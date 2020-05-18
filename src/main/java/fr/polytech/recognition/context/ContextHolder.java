@@ -1,7 +1,6 @@
-package fr.polytech.recognition.controller.infra.context;
+package fr.polytech.recognition.context;
 
 import fr.polytech.recognition.controller.infra.ControllerRegistry;
-import fr.polytech.recognition.controller.infra.ViewFactory;
 
 public interface ContextHolder {
 

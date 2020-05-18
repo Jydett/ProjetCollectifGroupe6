@@ -1,6 +1,6 @@
-package fr.polytech.recognition.controller.infra.impl;
+package fr.polytech.recognition.context.impl;
 
-import fr.polytech.recognition.controller.infra.context.ViewContext;
+import fr.polytech.recognition.context.ViewContext;
 import fr.polytech.recognition.view.swing.FrameContainer;
 import lombok.Getter;
 

@@ -1,6 +1,6 @@
 package fr.polytech.recognition.controller.routingevent;
 
-import fr.polytech.recognition.controller.infra.Controller;
+import fr.polytech.recognition.controller.Controller;
 import fr.polytech.recognition.controller.infra.ControllerRegistration;
 import fr.polytech.recognition.controller.infra.ControllerRegistry;
 import lombok.AllArgsConstructor;
