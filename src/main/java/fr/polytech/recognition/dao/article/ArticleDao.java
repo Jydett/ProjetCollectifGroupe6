@@ -1,7 +1,7 @@
 package fr.polytech.recognition.dao.article;
 
-import fr.polytech.recognition.model.Article;
-import fr.polytech.recognition.model.ArticleType;
+import fr.polytech.recognition.model.database.Article;
+import fr.polytech.recognition.model.database.ArticleType;
 
 import java.util.Collection;
 import java.util.Optional;

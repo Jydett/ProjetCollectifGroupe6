@@ -1,4 +1,4 @@
-package fr.polytech.recognition.model;
+package fr.polytech.recognition.model.database;
 
 import fr.polytech.recognition.dao.Identifiable;
 import lombok.AllArgsConstructor;
@@ -7,28 +7,20 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Article implements Identifiable<Long> {
-
+public class ArticleType implements Identifiable<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private double price;
-
     private String name;
 
-    @ManyToOne
-    private ArticleType articleType;
-
-    private String vendorLink;
-
-    @Embedded
-    private PictureEntity picture;
-
+    @OneToMany (mappedBy = "articleType")
+    private List<Article> articles;
 }

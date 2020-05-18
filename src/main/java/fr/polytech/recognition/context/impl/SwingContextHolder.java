@@ -1,7 +1,7 @@
-package fr.polytech.recognition.controller.infra.impl;
+package fr.polytech.recognition.context.impl;
 
 import fr.polytech.recognition.controller.infra.ControllerRegistry;
-import fr.polytech.recognition.controller.infra.context.ContextHolder;
+import fr.polytech.recognition.context.ContextHolder;
 import lombok.Getter;
 
 @Getter

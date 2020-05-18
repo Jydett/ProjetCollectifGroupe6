@@ -1,4 +1,4 @@
-package fr.polytech.recognition.model;
+package fr.polytech.recognition.model.database;
 
 import fr.polytech.recognition.utils.ImageFormat;
 import lombok.NoArgsConstructor;

@@ -1,22 +1,16 @@
 package fr.polytech.recognition.launcher;
 
-import com.google.protobuf.Enum;
 import fr.polytech.recognition.dao.article.impl.HibernateArticleDao;
 import fr.polytech.recognition.dao.articletype.impl.HibernateArticleTypeDao;
-import fr.polytech.recognition.model.Article;
-import fr.polytech.recognition.model.ArticleType;
-import fr.polytech.recognition.model.PictureEntity;
+import fr.polytech.recognition.model.database.Article;
+import fr.polytech.recognition.model.database.ArticleType;
+import fr.polytech.recognition.model.database.PictureEntity;
 import fr.polytech.recognition.utils.ImageFormat;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.internal.build.AllowSysOut;
 
 import javax.imageio.ImageIO;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
