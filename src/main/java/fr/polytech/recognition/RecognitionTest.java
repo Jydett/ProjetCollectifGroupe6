@@ -1,6 +1,6 @@
 package fr.polytech.recognition;
 
-import fr.polytech.recognition.view.swing.GUITest;
+import fr.polytech.recognition.view.swing.MainWindowsView;
 import org.tensorflow.Graph;
 import org.tensorflow.Session;
 import org.tensorflow.Tensor;
@@ -27,7 +27,7 @@ public class RecognitionTest extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            JFrame jFrame = new GUITest();
+            JFrame jFrame = new MainWindowsView();
             jFrame.setVisible(true);
         });
     }

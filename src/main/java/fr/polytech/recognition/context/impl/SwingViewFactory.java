@@ -5,7 +5,7 @@ import fr.polytech.recognition.controller.ImageChosenController;
 import fr.polytech.recognition.controller.infra.ControllerRegistry;
 import fr.polytech.recognition.context.ViewFactory;
 import fr.polytech.recognition.view.swing.SwingChooseImageView;
-import fr.polytech.recognition.view.swing.SwingImageChoosenView;
+import fr.polytech.recognition.view.swing.SwingImageChosenView;
 import lombok.AllArgsConstructor;
 
 import java.util.Optional;
@@ -26,7 +26,7 @@ public class SwingViewFactory implements ViewFactory {
             }
             case "ImageChosenView" : {
                 Optional<ImageChosenController> optController = controllerRegistry.getController("imageChosen");
-                return (V) new SwingImageChoosenView(context.getContainer(), optController.orElseThrow(() -> new IllegalArgumentException("No controller found")));
+                return (V) new SwingImageChosenView(context.getContainer(), optController.orElseThrow(() -> new IllegalArgumentException("No controller found")));
             }
             default: throw new IllegalArgumentException("unkown view");
         }
