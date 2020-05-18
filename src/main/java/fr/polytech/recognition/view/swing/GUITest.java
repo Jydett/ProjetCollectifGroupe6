@@ -24,6 +24,12 @@ public class GUITest extends JFrame {
     private void btnNewImport2ActionPerformed(ActionEvent e) {
         // TODO add your code here
     }
+    private void btnSaveArticleActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
+    private void btnDeleteArticleActionPerformed(ActionEvent e) {
+        // TODO add your code here
+    }
 
     private void initComponents(){
         FlatCyanLightIJTheme.install();
@@ -45,6 +51,8 @@ public class GUITest extends JFrame {
         scrollPaneInCharacter = new JScrollPane();
         CharacterTable = new JTable();
         btnNewImportInCharacter = new JButton();
+        btnSaveArticle = new JButton();
+        btnDeleteArticle = new JButton();
 
         //======== this ========
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -203,6 +211,30 @@ public class GUITest extends JFrame {
                 CharacterPanel.add(btnNewImportInCharacter);
                 btnNewImportInCharacter.setBounds(50, 470, 290, 40);
 
+                //---- btnSaveArticle ----
+                btnSaveArticle.setText("Enregistrer l'article");
+                btnSaveArticle.setFont(new Font("Avenir", Font.PLAIN, 16));
+                btnSaveArticle.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        btnSaveArticleActionPerformed(e);
+                    }
+                });
+                CharacterPanel.add(btnSaveArticle);
+                btnSaveArticle.setBounds(420, 470, 230, 40);
+
+                //---- btnDeleteArticle ----
+                btnDeleteArticle.setText("Supprimer l'article");
+                btnDeleteArticle.setFont(new Font("Avenir", Font.PLAIN, 16));
+                btnDeleteArticle.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        btnDeleteArticleActionPerformed(e);
+                    }
+                });
+                CharacterPanel.add(btnDeleteArticle);
+                btnDeleteArticle.setBounds(680, 470, 230, 40);
+
                 {
                     // compute preferred size
                     Dimension preferredSize = new Dimension();
@@ -260,4 +292,6 @@ public class GUITest extends JFrame {
     private JScrollPane scrollPaneInCharacter;
     private JTable CharacterTable;
     private JButton btnNewImportInCharacter;
+    private JButton btnSaveArticle;
+    private JButton btnDeleteArticle;
 }
