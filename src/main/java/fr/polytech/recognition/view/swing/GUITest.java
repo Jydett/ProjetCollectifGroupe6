@@ -166,7 +166,7 @@ public class GUITest extends JFrame {
             }
             TabbedPanel.addTab("  R\u00e9sultat de la reconnaissance      ", ResultPanel);
 
-            //======== panel1 ========
+            //======== CharacterPanel ========
             {
                 CharacterPanel.setLayout(null);
 
