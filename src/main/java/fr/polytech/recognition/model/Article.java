@@ -5,8 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ListIndexBase;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -21,12 +23,11 @@ public class Article implements Identifiable<Long> {
 
     private double price;
 
+    @Column (unique = true)
     private String name;
 
-    @ManyToOne
-    private ArticleType articleType;
-
-    private String vendorLink;
+    @ElementCollection
+    private List <String> vendorLink;
 
     @Embedded
     private PictureEntity picture;
