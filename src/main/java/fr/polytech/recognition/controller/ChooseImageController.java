@@ -3,7 +3,7 @@ package fr.polytech.recognition.controller;
 import fr.polytech.recognition.controller.infra.ControllerRegistration;
 import fr.polytech.recognition.controller.infra.Router;
 import fr.polytech.recognition.controller.infra.di.Inject;
-import fr.polytech.recognition.controller.routingevent.events.ImageChoosenEvent;
+import fr.polytech.recognition.controller.event.events.ImageChoosenEvent;
 import fr.polytech.recognition.dao.article.ArticleDao;
 import fr.polytech.recognition.model.ChooseImageModel;
 import fr.polytech.recognition.view.ChooseImageView;

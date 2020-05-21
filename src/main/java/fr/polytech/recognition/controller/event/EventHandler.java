@@ -1,4 +1,4 @@
-package fr.polytech.recognition.controller.routingevent;
+package fr.polytech.recognition.controller.event;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

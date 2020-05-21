@@ -2,7 +2,11 @@ package fr.polytech.recognition.view;
 
 public interface View {
 
-    void display();
+    void initialize();
 
-    void dispose();
+    default void dispose() {
+
+    }
+
+    String getTitle();
 }

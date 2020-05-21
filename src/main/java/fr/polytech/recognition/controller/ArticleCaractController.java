@@ -2,7 +2,6 @@ package fr.polytech.recognition.controller;
 
 import fr.polytech.recognition.controller.infra.ControllerRegistration;
 import fr.polytech.recognition.controller.infra.Router;
-import fr.polytech.recognition.controller.routingevent.EventHandler;
 import fr.polytech.recognition.model.ArticleCaractModel;
 import fr.polytech.recognition.view.ArticleCaractView;
 

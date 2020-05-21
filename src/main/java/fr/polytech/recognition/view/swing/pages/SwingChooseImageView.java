@@ -1,7 +1,8 @@
-package fr.polytech.recognition.view.swing;
+package fr.polytech.recognition.view.swing.pages;
 
 import fr.polytech.recognition.controller.ChooseImageController;
 import fr.polytech.recognition.view.ChooseImageView;
+import fr.polytech.recognition.view.swing.SwingView;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -16,9 +17,9 @@ public class SwingChooseImageView extends SwingView implements ChooseImageView {
     private static final FileNameExtensionFilter IMG_FILTER = new FileNameExtensionFilter(
             "JPG & JPEG Images", "jpg", "jpeg");
 
-    public SwingChooseImageView(FrameContainer container, ChooseImageController controller) {
-        super(container.getFrame());
+    public SwingChooseImageView(ChooseImageController controller) {
         this.controller = controller;
+        initialize();
     }
 
     private void btnImportActionPerformed(ActionEvent e) {
@@ -29,8 +30,8 @@ public class SwingChooseImageView extends SwingView implements ChooseImageView {
         // TODO add your code here
     }
 
-    protected void initialize() {
-        ImportPanel = new JPanel();
+    public void initialize() {
+        ImportPanel = this; //todo a refactor
         btnImport = new JButton();
         imageLabel = new JLabel();
         btnLance = new JButton();
@@ -42,11 +43,7 @@ public class SwingChooseImageView extends SwingView implements ChooseImageView {
             //---- btnImport ----
             btnImport.setText("Importer image");
             btnImport.setFont(new Font("Avenir", Font.PLAIN, 16));
-            btnImport.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    btnImportActionPerformed(e);
-                }
-            });
+            btnImport.addActionListener(e -> btnImportActionPerformed(e));
             ImportPanel.add(btnImport);
             btnImport.setBounds(50, 35, 160, 30);
 
@@ -102,4 +99,9 @@ public class SwingChooseImageView extends SwingView implements ChooseImageView {
     private JButton btnImport;
     private JLabel imageLabel;
     private JButton btnLance;
+
+    @Override
+    public String getTitle() {
+        return "Analyser l'image";
+    }
 }

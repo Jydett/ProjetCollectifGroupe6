@@ -1,8 +1,9 @@
-package fr.polytech.recognition.view.swing;
+package fr.polytech.recognition.view.swing.pages;
 
 import fr.polytech.recognition.controller.ArticleCaractController;
 import fr.polytech.recognition.controller.ImageChosenController;
 import fr.polytech.recognition.view.ArticleCaractView;
+import fr.polytech.recognition.view.swing.SwingView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,14 +18,13 @@ public class SwingArticleCaractView extends SwingView implements ArticleCaractVi
         // TODO add your code here
     }
 
-    public SwingArticleCaractView(FrameContainer container, ArticleCaractController controller) {
-        super(container.getFrame());
-
+    public SwingArticleCaractView(ArticleCaractController controller) {
         this.controller = controller;
+        initialize();
     }
 
-    protected void initialize() {
-        CharacterPanel = new JPanel();
+    public void initialize() {
+        CharacterPanel = this; //todo a refactor
 
         splitPaneInCharacter = new JSplitPane();
         imageCharacter = new JLabel();
@@ -88,6 +88,12 @@ public class SwingArticleCaractView extends SwingView implements ArticleCaractVi
         }
 
     }
+
+    @Override
+    public String getTitle() {
+        return "Résultat";
+    }
+
     private JPanel CharacterPanel;
     private JSplitPane splitPaneInCharacter;
     private JLabel imageCharacter;

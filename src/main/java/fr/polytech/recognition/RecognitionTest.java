@@ -1,6 +1,6 @@
 package fr.polytech.recognition;
 
-import fr.polytech.recognition.view.swing.MainWindowsView;
+import fr.polytech.recognition.view.swing.TabbedFrame;
 import org.tensorflow.Graph;
 import org.tensorflow.Session;
 import org.tensorflow.Tensor;
@@ -25,12 +25,12 @@ import java.util.concurrent.TimeUnit;
 
 public class RecognitionTest extends JFrame {
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            JFrame jFrame = new MainWindowsView();
-            jFrame.setVisible(true);
-        });
-    }
+//    public static void main(String[] args) {
+//        SwingUtilities.invokeLater(() -> {
+//            JFrame jFrame = new TabbedFrame();
+//            jFrame.setVisible(true);
+//        });
+//    }
 
     private static final String MODELPATH;
     private static final List<String> LABELS;

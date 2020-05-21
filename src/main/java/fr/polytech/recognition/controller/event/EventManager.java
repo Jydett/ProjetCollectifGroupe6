@@ -1,4 +1,4 @@
-package fr.polytech.recognition.controller.routingevent;
+package fr.polytech.recognition.controller.event;
 
 import fr.polytech.recognition.controller.Controller;
 import fr.polytech.recognition.controller.infra.ControllerRegistration;

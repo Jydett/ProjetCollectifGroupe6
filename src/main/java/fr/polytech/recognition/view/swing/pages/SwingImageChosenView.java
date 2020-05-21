@@ -1,7 +1,8 @@
-package fr.polytech.recognition.view.swing;
+package fr.polytech.recognition.view.swing.pages;
 
 import fr.polytech.recognition.controller.ImageChosenController;
 import fr.polytech.recognition.view.ImageChosenView;
+import fr.polytech.recognition.view.swing.SwingView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,13 +17,13 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
         // TODO add your code here
     }
 
-    public SwingImageChosenView(FrameContainer container, ImageChosenController controller) {
-        super(container.getFrame());
+    public SwingImageChosenView(ImageChosenController controller) {
         this.controller = controller;
+        initialize();
     }
 
-    protected void initialize() {
-        ResultPanel = new JPanel();
+    public void initialize() {
+        ResultPanel = this; //TOdo a refactor
         splitPaneInResult = new JSplitPane();
         imageChosen = new JLabel();
         scrollPaneInResult = new JScrollPane();
@@ -88,4 +89,9 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
     private JScrollPane scrollPaneInResult;
     private JTable ResultTable;
     private JButton btnNewImportInResult;
+
+    @Override
+    public String getTitle() {//TODO i18n
+        return "Choisir son image";
+    }
 }

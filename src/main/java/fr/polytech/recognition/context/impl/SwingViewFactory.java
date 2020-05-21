@@ -1,20 +1,23 @@
 package fr.polytech.recognition.context.impl;
 
+import fr.polytech.recognition.controller.ArticleCaractController;
 import fr.polytech.recognition.controller.ChooseImageController;
 import fr.polytech.recognition.controller.ImageChosenController;
 import fr.polytech.recognition.controller.infra.ControllerRegistry;
 import fr.polytech.recognition.context.ViewFactory;
-import fr.polytech.recognition.view.swing.SwingChooseImageView;
-import fr.polytech.recognition.view.swing.SwingImageChosenView;
+import fr.polytech.recognition.view.swing.pages.SwingArticleCaractView;
+import fr.polytech.recognition.view.swing.pages.SwingChooseImageView;
+import fr.polytech.recognition.view.swing.pages.SwingImageChosenView;
 import lombok.AllArgsConstructor;
 
 import java.util.Optional;
+import java.util.function.Supplier;
 
 @AllArgsConstructor
 public class SwingViewFactory implements ViewFactory {
 
-    private final SwingViewContext context;
     private final ControllerRegistry controllerRegistry;
+    private final Supplier<IllegalArgumentException> noControllerFoundExceptionSupplier = () -> new IllegalArgumentException("No controller found");
 
     @Override
     public <V> V getView(Class<V> viewClass) {
@@ -22,13 +25,17 @@ public class SwingViewFactory implements ViewFactory {
             //TODO enum ?
             case "ChooseImageView" : {
                 Optional<ChooseImageController> optController = controllerRegistry.getController("chooseImage");
-                return (V) new SwingChooseImageView(context.getContainer(), optController.orElseThrow(() -> new IllegalArgumentException("No controller found")));
+                return (V) new SwingChooseImageView(optController.orElseThrow(noControllerFoundExceptionSupplier));
             }
             case "ImageChosenView" : {
                 Optional<ImageChosenController> optController = controllerRegistry.getController("imageChosen");
-                return (V) new SwingImageChosenView(context.getContainer(), optController.orElseThrow(() -> new IllegalArgumentException("No controller found")));
+                return (V) new SwingImageChosenView(optController.orElseThrow(noControllerFoundExceptionSupplier));
             }
-            default: throw new IllegalArgumentException("unkown view");
+            case "ArticleCaractView" : {
+                Optional<ArticleCaractController> optController = controllerRegistry.getController("articleCaract");
+                return (V) new SwingArticleCaractView(optController.orElseThrow(noControllerFoundExceptionSupplier));
+            }
+            default: throw new IllegalArgumentException("Unknown view " + viewClass.getSimpleName());
         }
     }
 }

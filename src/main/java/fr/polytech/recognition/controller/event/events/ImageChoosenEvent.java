@@ -1,6 +1,6 @@
-package fr.polytech.recognition.controller.routingevent.events;
+package fr.polytech.recognition.controller.event.events;
 
-import fr.polytech.recognition.controller.routingevent.Event;
+import fr.polytech.recognition.controller.event.Event;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
