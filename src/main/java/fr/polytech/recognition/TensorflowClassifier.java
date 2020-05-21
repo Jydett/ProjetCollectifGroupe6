@@ -9,13 +9,12 @@ import java.awt.image.BufferedImage;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * In this class you will find the methods to exploit a tensorflow model
+ * Image classification using a tensorflow model
  */
-public class ImageClassificator {
+public class TensorflowClassifier implements Classifier {
     private Session session;
     private Graph modelGraph;
     private List<String> labels;
@@ -29,16 +28,16 @@ public class ImageClassificator {
      *
      * @param modelPathDef a path to your model pb file
      * @param labelsPathDef a path to your model list of labels
-     * @param imageWidth specific to the model
-     * @param imageHeigth specific to the model
-     * @param mean specific to the model
-     * @param scale speicifc to the model
+     * @param modelImageWidth Image width that is acceptable by the model
+     * @param modelImageHeigth Image height that is acceptable by the model
+     * @param modelMean RGB pixel value mean that is acceptable by the model (see ImageConversion class)
+     * @param modelScale RGB pixel value scale that is acceptable by the model  (see ImageConversion class)
      */
-    public ImageClassificator(String modelPathDef, String labelsPathDef, int imageWidth, int imageHeigth, float mean, float scale) {
-        this.imageHeight = imageHeigth;
-        this.imageWidth = imageWidth;
-        this.mean = mean;
-        this.scale = scale;
+    public TensorflowClassifier(String modelPathDef, String labelsPathDef, int modelImageWidth, int modelImageHeigth, float modelMean, float modelScale) {
+        this.imageHeight = modelImageHeigth;
+        this.imageWidth = modelImageWidth;
+        this.mean = modelMean;
+        this.scale = modelScale;
         try {
             Path modelPath = Paths.get(this.getClass().getResource(modelPathDef).toURI());
             Path labelsPath = Paths.get(this.getClass().getResource(labelsPathDef).toURI());
@@ -51,9 +50,9 @@ public class ImageClassificator {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-
     }
 
+    @Override
     public  PredictionResult prediction(BufferedImage image) {
         // we only give one image to the model hence the size
         float [][][][] imageData = new float[1][imageHeight][imageWidth][3];
@@ -67,8 +66,8 @@ public class ImageClassificator {
 
     public static void main(String[] args) {
         try {
-            BufferedImage image = ImageIO.read(ImageClassificator.class.getResource("/test_image.jpg"));
-            ImageClassificator classificator = new ImageClassificator(
+            BufferedImage image = ImageIO.read(TensorflowClassifier.class.getResource("/test_image.jpg"));
+            TensorflowClassifier classificator = new TensorflowClassifier(
                     "/tensorflow_inception_graph.pb",
                     "/imagenet_comp_graph_label_strings.txt",
                     224,224, 117f, 1f

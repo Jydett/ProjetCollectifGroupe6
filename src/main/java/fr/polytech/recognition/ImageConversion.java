@@ -8,15 +8,12 @@ import org.bytedeco.javacv.OpenCVFrameConverter;
 import static org.bytedeco.javacpp.opencv_core.cvGet2D;
 import static org.bytedeco.javacpp.opencv_imgproc.*;
 
-
-
 import java.awt.image.BufferedImage;
 
 /**
- * Converts a given image to comply with the tensorflow model graph
+ * Useful image convertion methods to make an image comply with a model standard
  */
 public class ImageConversion {
-
     /**
      * Converts and normalize the given image so that it can be exploited by a tensorflow model
      * @param image The image to convert
@@ -41,11 +38,11 @@ public class ImageConversion {
         return result;
     }
     /**
-     * convert a buffered image to IplImage
+     * Convert a buffered image to IplImage
      * @param image the image to convert
      * @return the newly created IplImage
      */
-    public static IplImage convertImage(BufferedImage image) {
+    protected static IplImage convertImage(BufferedImage image) {
         ToIplImage iplConverter = new OpenCVFrameConverter.ToIplImage();
         Java2DFrameConverter java2dConverter = new Java2DFrameConverter();
         IplImage iplImage = iplConverter.convert(java2dConverter.convert(image));
@@ -58,10 +55,9 @@ public class ImageConversion {
      * @param image
      * @return
      */
-    public static IplImage resizeImage(int targetHeight, int targetWidth, IplImage image) {
+    protected static IplImage resizeImage(int targetHeight, int targetWidth, IplImage image) {
         IplImage resizedImage = IplImage.create(targetWidth, targetHeight, image.depth(), image.nChannels());
         cvResize(image, resizedImage);
         return resizedImage;
     }
-
 }
