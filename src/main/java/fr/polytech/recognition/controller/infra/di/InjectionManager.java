@@ -1,7 +1,9 @@
 package fr.polytech.recognition.controller.infra.di;
 
+import fr.polytech.recognition.exception.RegistrationError;
 import org.reflections.Reflections;
 
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -27,6 +29,19 @@ public class InjectionManager {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public static void injectDependencies(Object object) {
+        try {
+            for (Field field : object.getClass().getFields()) {
+                if (field.getAnnotation(Inject.class) != null) {
+                    field.setAccessible(true);
+                    field.set(object, InjectionManager.get(field.getType()));
+                }
+            }
+        } catch (Exception e) {
+            throw new RegistrationError("An error has occurred while injecting values in constructor " + object.getClass().getSimpleName(), e);
         }
     }
 }

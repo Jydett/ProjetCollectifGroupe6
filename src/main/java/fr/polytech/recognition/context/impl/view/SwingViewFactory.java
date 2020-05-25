@@ -1,4 +1,4 @@
-package fr.polytech.recognition.context.impl;
+package fr.polytech.recognition.context.impl.view;
 
 import fr.polytech.recognition.controller.ArticleCaractController;
 import fr.polytech.recognition.controller.ChooseImageController;
