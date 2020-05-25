@@ -12,8 +12,10 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Supplier;
 
 public final class ControllerRegistry {
 
@@ -60,11 +62,19 @@ public final class ControllerRegistry {
         if (lazyController == null) {
             return Optional.empty();
         }
-        return Optional.of((T) lazyController.getController());
+        return Optional.of((T) lazyController.get());
+    }
+
+    public static String getControllerName(Controller<?, ?> controller) {//TODO error case
+        return controller.getClass().getAnnotation(ControllerRegistration.class).name();
+    }
+
+    public Iterator<? extends Supplier<Controller<?, ?>>> iterator() {//TODO ordre !!!!
+        return CONTROLLERS.values().iterator();
     }
 
     @RequiredArgsConstructor
-    private static class LazyController {
+    private static class LazyController implements Supplier<Controller<?, ?>> {
 
         private static Router router;
         private final boolean constructorOrder;
@@ -72,7 +82,7 @@ public final class ControllerRegistry {
         private final Constructor<?> constructor;
         private Controller instance;
 
-        public Controller getController() {
+        public Controller get() {
             if (instance == null) {
                 try {
                     instance = (Controller) (constructorOrder ? constructor.newInstance(router, model) : constructor.newInstance(router, model));
