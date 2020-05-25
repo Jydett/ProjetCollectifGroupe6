@@ -9,7 +9,7 @@ import fr.polytech.recognition.event.Event;
 import fr.polytech.recognition.event.EventManager;
 import fr.polytech.recognition.dao.context.DaoContext;
 import fr.polytech.recognition.dao.context.impl.NoDaoContext;
-import fr.polytech.recognition.model.database.ArticleType;
+import fr.polytech.recognition.model.database.Article;
 import fr.polytech.recognition.view.ViewContext;
 import lombok.Getter;
 
@@ -22,7 +22,7 @@ public class Router {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> Router.getInstance().init(
             new SwingContextHolder(), new NoDaoContext(),
-            new ClassifierContext<String, ArticleType>(
+            new ClassifierContext<String, Article>(
                 new TensorflowClassifier("/tensorflow_inception_graph.pb",
                 "/imagenet_comp_graph_label_strings.txt",
                 224,224, 117f, 1f),

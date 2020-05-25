@@ -5,7 +5,7 @@ import fr.polytech.recognition.controller.infra.Router;
 import fr.polytech.recognition.event.EventHandler;
 import fr.polytech.recognition.event.events.ClassificationFinishedEvent;
 import fr.polytech.recognition.model.ImageChosenModel;
-import fr.polytech.recognition.model.database.ArticleType;
+import fr.polytech.recognition.model.database.Article;
 import fr.polytech.recognition.view.ImageChosenView;
 
 import java.io.File;
@@ -24,7 +24,7 @@ public class ImageChosenController extends Controller<ImageChosenView, ImageChos
     }
 
     @EventHandler
-    public void onRecognitionResult(ClassificationFinishedEvent<ArticleType> event) {
+    public void onRecognitionResult(ClassificationFinishedEvent<Article> event) {
         System.out.println("Resultat recu : " + event.toString());
     }
 
