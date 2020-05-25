@@ -8,6 +8,6 @@ public class ReflectionUtils {
         return (Class<T>)
                 ((ParameterizedType)
                     c.getGenericSuperclass())
-                .getActualTypeArguments()[0];
+                .getActualTypeArguments()[1];
     }
 }

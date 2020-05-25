@@ -2,7 +2,7 @@ package fr.polytech.recognition.dao.article.impl;
 
 import fr.polytech.recognition.dao.HibernateDao;
 import fr.polytech.recognition.dao.article.ArticleDao;
-import fr.polytech.recognition.model.Article;
+import fr.polytech.recognition.model.database.Article;
 import org.hibernate.Session;
 
 import java.util.Collection;

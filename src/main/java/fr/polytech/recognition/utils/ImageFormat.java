@@ -5,7 +5,8 @@ import lombok.Getter;
 
 @AllArgsConstructor
 public enum  ImageFormat {
-    PNG("PNG");
+    PNG("PNG"),
+    JPG("JPG");
     @Getter
     private final String extention;
 }
