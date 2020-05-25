@@ -2,6 +2,7 @@ package fr.polytech.recognition.view.swing.pages;
 
 import fr.polytech.recognition.controller.ArticleCaractController;
 import fr.polytech.recognition.controller.ImageChosenController;
+import fr.polytech.recognition.model.database.Article;
 import fr.polytech.recognition.view.ArticleCaractView;
 import fr.polytech.recognition.view.swing.SwingView;
 
@@ -29,7 +30,8 @@ public class SwingArticleCaractView extends SwingView implements ArticleCaractVi
         imageCharacter = new JLabel();
         scrollPaneInCharacter = new JScrollPane();
         CharacterTable = new JTable();
-
+        btnSaveArticle = new JButton();
+        btnDeleteArticle = new JButton();
         //======== CharacterPanel ========
         {
             CharacterPanel.setLayout(null);
@@ -57,7 +59,29 @@ public class SwingArticleCaractView extends SwingView implements ArticleCaractVi
             splitPaneInCharacter.setBounds(0, 0, 915, 470);
             splitPaneInCharacter.setDividerLocation(400);
 
+            //---- btnSaveArticle ----
+            btnSaveArticle.setText("Enregistrer l'article");
+            btnSaveArticle.setFont(new Font("Avenir", Font.PLAIN, 16));
+            btnSaveArticle.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    controller.btnSaveArticleActionPerformed(e);
+                }
+            });
+            CharacterPanel.add(btnSaveArticle);
+            btnSaveArticle.setBounds(420, 470, 230, 40);
 
+            //---- btnDeleteArticle ----
+            btnDeleteArticle.setText("Supprimer l'article");
+            btnDeleteArticle.setFont(new Font("Avenir", Font.PLAIN, 16));
+            btnDeleteArticle.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    controller.btnDeleteArticleActionPerformed(e, (Article) CharacterTable.getValueAt(CharacterTable.getSelectedRow(), 0));
+                }
+            });
+            CharacterPanel.add(btnDeleteArticle);
+            btnDeleteArticle.setBounds(680, 470, 230, 40);
             {
                 // compute preferred size
                 Dimension preferredSize = new Dimension();
@@ -92,4 +116,6 @@ public class SwingArticleCaractView extends SwingView implements ArticleCaractVi
     private JLabel imageCharacter;
     private JScrollPane scrollPaneInCharacter;
     private JTable CharacterTable;
+    private JButton btnSaveArticle;
+    private JButton btnDeleteArticle;
 }
