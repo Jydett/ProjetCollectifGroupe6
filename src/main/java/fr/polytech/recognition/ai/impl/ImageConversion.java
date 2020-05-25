@@ -1,4 +1,4 @@
-package fr.polytech.recognition;
+package fr.polytech.recognition.ai.impl;
 
 import org.bytedeco.javacpp.opencv_core.*;
 import org.bytedeco.javacv.Java2DFrameConverter;
@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
 /**
  * Useful image convertion methods to make an image comply with a model standard
  */
-public class ImageConversion {
+public final class ImageConversion {
     /**
      * Converts and normalize the given image so that it can be exploited by a tensorflow model
      * @param image The image to convert
@@ -42,7 +42,7 @@ public class ImageConversion {
      * @param image the image to convert
      * @return the newly created IplImage
      */
-    protected static IplImage convertImage(BufferedImage image) {
+    private static IplImage convertImage(BufferedImage image) {
         ToIplImage iplConverter = new OpenCVFrameConverter.ToIplImage();
         Java2DFrameConverter java2dConverter = new Java2DFrameConverter();
         IplImage iplImage = iplConverter.convert(java2dConverter.convert(image));
@@ -55,7 +55,7 @@ public class ImageConversion {
      * @param image
      * @return
      */
-    protected static IplImage resizeImage(int targetHeight, int targetWidth, IplImage image) {
+    private static IplImage resizeImage(int targetHeight, int targetWidth, IplImage image) {
         IplImage resizedImage = IplImage.create(targetWidth, targetHeight, image.depth(), image.nChannels());
         cvResize(image, resizedImage);
         return resizedImage;

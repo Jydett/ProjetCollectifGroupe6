@@ -1,10 +1,10 @@
-package fr.polytech.recognition;
+package fr.polytech.recognition.ai.impl;
 
+import fr.polytech.recognition.ai.Classifier;
 import org.tensorflow.Graph;
 import org.tensorflow.Session;
 import org.tensorflow.Tensor;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -53,7 +53,7 @@ public class TensorflowClassifier implements Classifier {
     }
 
     @Override
-    public  PredictionResult prediction(BufferedImage image) {
+    public TensorflowRecognitionResult prediction(BufferedImage image) {
         // we only give one image to the model hence the size
         float [][][][] imageData = new float[1][imageHeight][imageWidth][3];
         imageData[0] = ImageConversion.imageToNormalizedRGBArray(image, imageHeight, imageWidth, mean, scale);
@@ -61,24 +61,9 @@ public class TensorflowClassifier implements Classifier {
         Tensor imageTensor = Tensor.create(imageData, Float.class);
         Tensor result = session.runner().feed("input", imageTensor).fetch("output").run().get(0);
 
-        return new PredictionResult(result, labels);
+        return new TensorflowRecognitionResult(result, labels);
     }
 
-    public static void main(String[] args) {
-        try {
-            BufferedImage image = ImageIO.read(TensorflowClassifier.class.getResource("/test_image.jpg"));
-            TensorflowClassifier classificator = new TensorflowClassifier(
-                    "/tensorflow_inception_graph.pb",
-                    "/imagenet_comp_graph_label_strings.txt",
-                    224,224, 117f, 1f
-            );
-            PredictionResult result = classificator.prediction(image);
-            result.sortPredictions(true);
-            System.out.println(result.toString());
-            System.out.println("Best result : " + result.findBestLabel());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+
 
 }

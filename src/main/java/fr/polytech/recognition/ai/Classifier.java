@@ -1,4 +1,6 @@
-package fr.polytech.recognition;
+package fr.polytech.recognition.ai;
+
+import fr.polytech.recognition.ai.impl.TensorflowRecognitionResult;
 
 import java.awt.image.BufferedImage;
 
@@ -11,5 +13,5 @@ public interface Classifier {
      * @param image The image to classift
      * @return A prediction result consisting of labels and the estimated probability that they are correct
      */
-    PredictionResult prediction(BufferedImage image);
+    RecognitionResult prediction(BufferedImage image);
 }
