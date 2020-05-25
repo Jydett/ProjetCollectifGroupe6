@@ -102,7 +102,7 @@ public class SwingChooseImageView extends SwingView implements ChooseImageView {
 
     @Override
     public String getTitle() {
-        return "Analyser l'image";
+        return "Choisir son image";
     }
 
     @Override

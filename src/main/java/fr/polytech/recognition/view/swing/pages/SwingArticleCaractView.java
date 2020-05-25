@@ -79,7 +79,7 @@ public class SwingArticleCaractView extends SwingView implements ArticleCaractVi
 
     @Override
     public String getTitle() {
-        return "Résultat";
+        return "Caractéristique un article";
     }
 
     @Override
