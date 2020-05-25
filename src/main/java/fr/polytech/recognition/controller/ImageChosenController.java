@@ -2,9 +2,10 @@ package fr.polytech.recognition.controller;
 
 import fr.polytech.recognition.controller.infra.ControllerRegistration;
 import fr.polytech.recognition.controller.infra.Router;
-import fr.polytech.recognition.controller.event.EventHandler;
-import fr.polytech.recognition.controller.event.events.ImageChoosenEvent;
+import fr.polytech.recognition.event.EventHandler;
+import fr.polytech.recognition.event.events.ClassificationFinishedEvent;
 import fr.polytech.recognition.model.ImageChosenModel;
+import fr.polytech.recognition.model.database.Article;
 import fr.polytech.recognition.view.ImageChosenView;
 
 import java.io.File;
@@ -23,8 +24,8 @@ public class ImageChosenController extends Controller<ImageChosenView, ImageChos
     }
 
     @EventHandler
-    public void onImageChosen(ImageChoosenEvent event) {
-        fileSelected = event.getFileSelected();
+    public void onRecognitionResult(ClassificationFinishedEvent<Article> event) {
+        System.out.println("Resultat recu : " + event.toString());
     }
 
     public String getSelectedImage() {

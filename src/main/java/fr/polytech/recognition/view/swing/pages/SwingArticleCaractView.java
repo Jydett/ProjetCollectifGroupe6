@@ -30,8 +30,8 @@ public class SwingArticleCaractView extends SwingView implements ArticleCaractVi
         imageCharacter = new JLabel();
         scrollPaneInCharacter = new JScrollPane();
         CharacterTable = new JTable();
-        btnSaveArticle = new JButton();
-        btnDeleteArticle = new JButton();
+//        btnSaveArticle = new JButton();
+//        btnDeleteArticle = new JButton();
         //======== CharacterPanel ========
         {
             CharacterPanel.setLayout(null);
@@ -59,7 +59,7 @@ public class SwingArticleCaractView extends SwingView implements ArticleCaractVi
             CharacterPanel.add(splitPaneInCharacter);
             splitPaneInCharacter.setBounds(0, 0, 915, 470);
             splitPaneInCharacter.setDividerLocation(400);
-
+            /*
             //---- btnSaveArticle ----
             btnSaveArticle.setText("Enregistrer l'article");
             btnSaveArticle.setFont(new Font("Avenir", Font.PLAIN, 16));
@@ -83,6 +83,7 @@ public class SwingArticleCaractView extends SwingView implements ArticleCaractVi
             });
             CharacterPanel.add(btnDeleteArticle);
             btnDeleteArticle.setBounds(680, 470, 230, 40);
+             */
             {
                 // compute preferred size
                 Dimension preferredSize = new Dimension();
@@ -117,6 +118,6 @@ public class SwingArticleCaractView extends SwingView implements ArticleCaractVi
     private JLabel imageCharacter;
     private JScrollPane scrollPaneInCharacter;
     private JTable CharacterTable;
-    private JButton btnSaveArticle;
-    private JButton btnDeleteArticle;
+ //   private JButton btnSaveArticle;
+ //   private JButton btnDeleteArticle;
 }

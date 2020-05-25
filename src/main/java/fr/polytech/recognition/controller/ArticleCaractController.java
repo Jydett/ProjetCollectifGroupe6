@@ -1,6 +1,5 @@
 package fr.polytech.recognition.controller;
 
-import fr.polytech.recognition.controller.event.events.ImageChoosenEvent;
 import fr.polytech.recognition.controller.infra.ControllerRegistration;
 import fr.polytech.recognition.controller.infra.Router;
 import fr.polytech.recognition.model.ArticleCaractModel;
@@ -10,7 +9,6 @@ import fr.polytech.recognition.view.ArticleCaractView;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,13 +35,12 @@ public class ArticleCaractController extends Controller<ArticleCaractView, Artic
         tableMod.setRowCount(0); // Clear the Table of all of his rows
 
         List<Object> listHeader = new ArrayList<Object>( );
-        listHeader.add("Article"); listHeader.add("Type d'article"); listHeader.add("Nom"); listHeader.add("Prix"); listHeader.add("Lien Vendeur");
+        listHeader.add("Article"); listHeader.add("Nom"); listHeader.add("Prix"); listHeader.add("Lien Vendeur");
         tableMod.addRow(listHeader.toArray());
 
         List<Object> listTable = new ArrayList<Object>();
 
         listTable.add(artSelected);
-        listTable.add(artSelected.getArticleType());
         listTable.add(artSelected.getName());
         listTable.add(artSelected.getPrice());
         listTable.add(artSelected.getVendorLink());
