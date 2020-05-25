@@ -23,11 +23,11 @@ public class SwingChooseImageView extends SwingView implements ChooseImageView {
     }
 
     private void btnImportActionPerformed(ActionEvent e) {
-        // TODO add your code here
+        controller.onImportButtonClicked(e);
     }
 
     private void btnLanceActionPerformed(ActionEvent e) {
-        // TODO add your code here
+        controller.onLanceButtonClicked(e);
     }
 
     public void initialize() {

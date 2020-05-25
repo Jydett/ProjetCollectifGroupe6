@@ -29,6 +29,11 @@ public class ChooseImageController extends Controller<ChooseImageView, ChooseIma
         imageChoosen(currentView.chooseImage());
     }
 
+    public void onLanceButtonClicked(ActionEvent actionEvent)
+    {
+        //TODO
+    }
+
     public void imageChoosen(File selectedFile) {
         rooter.dispatchEvent(new ImageChoosenEvent(selectedFile));
         rooter.nextController("imageChosen");
