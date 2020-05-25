@@ -13,9 +13,6 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
 
     private final ImageChosenController controller;
 
-    private void btnNewImportActionPerformed(ActionEvent e) {
-        // TODO add your code here
-    }
 
     public SwingImageChosenView(ImageChosenController controller) {
         this.controller = controller;
@@ -28,7 +25,6 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
         imageChosen = new JLabel();
         scrollPaneInResult = new JScrollPane();
         ResultTable = new JTable();
-        btnNewImportInResult = new JButton();
         //======== ResultPanel ========
         {
             ResultPanel.setLayout(null);
@@ -55,17 +51,6 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
             splitPaneInResult.setBounds(0, 0, 915, 470);
             splitPaneInResult.setDividerLocation(400);
 
-            //---- btnNewImport ----
-            btnNewImportInResult.setText("Importer nouvelle image");
-            btnNewImportInResult.setFont(new Font("Avenir", Font.PLAIN, 16));
-            btnNewImportInResult.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    btnNewImportActionPerformed(e);
-                }
-            });
-            ResultPanel.add(btnNewImportInResult);
-            btnNewImportInResult.setBounds(50, 470, 290, 40);
-
             {
                 // compute preferred size
                 Dimension preferredSize = new Dimension();
@@ -88,10 +73,14 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
     private JLabel imageChosen;
     private JScrollPane scrollPaneInResult;
     private JTable ResultTable;
-    private JButton btnNewImportInResult;
 
     @Override
     public String getTitle() {//TODO i18n
         return "Choisir son image";
+    }
+
+    @Override
+    public int priority() {
+        return PageOrder.IMAGE_CHOOSEN_ORDER;
     }
 }

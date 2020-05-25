@@ -9,14 +9,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class SwingArticleCaractView extends SwingView implements ArticleCaractView {
 
     private final ArticleCaractController controller;
 
-    private void btnNewImport2ActionPerformed(ActionEvent e) {
-        // TODO add your code here
-    }
 
     public SwingArticleCaractView(ArticleCaractController controller) {
         this.controller = controller;
@@ -30,7 +29,6 @@ public class SwingArticleCaractView extends SwingView implements ArticleCaractVi
         imageCharacter = new JLabel();
         scrollPaneInCharacter = new JScrollPane();
         CharacterTable = new JTable();
-        btnNewImportInCharacter = new JButton();
 
         //======== CharacterPanel ========
         {
@@ -59,16 +57,6 @@ public class SwingArticleCaractView extends SwingView implements ArticleCaractVi
             splitPaneInCharacter.setBounds(0, 0, 915, 470);
             splitPaneInCharacter.setDividerLocation(400);
 
-            //---- btnNewImport2 ----
-            btnNewImportInCharacter.setText("Importer nouvelle image");
-            btnNewImportInCharacter.setFont(new Font("Avenir", Font.PLAIN, 16));
-            btnNewImportInCharacter.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    btnNewImport2ActionPerformed(e);
-                }
-            });
-            CharacterPanel.add(btnNewImportInCharacter);
-            btnNewImportInCharacter.setBounds(50, 470, 290, 40);
 
             {
                 // compute preferred size
@@ -94,10 +82,14 @@ public class SwingArticleCaractView extends SwingView implements ArticleCaractVi
         return "Résultat";
     }
 
+    @Override
+    public int priority() {
+        return PageOrder.ARTICLE_CHARAC_ORDER;
+    }
+
     private JPanel CharacterPanel;
     private JSplitPane splitPaneInCharacter;
     private JLabel imageCharacter;
     private JScrollPane scrollPaneInCharacter;
     private JTable CharacterTable;
-    private JButton btnNewImportInCharacter;
 }

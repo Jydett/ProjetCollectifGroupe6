@@ -25,10 +25,19 @@ public class ChooseImageController extends Controller<ChooseImageView, ChooseIma
         setView(rooter.createView(ChooseImageView.class));
     }
 
-    public void onImportButtonClicked(ActionEvent actionEvent) {
+    /**
+     * Lance une fenêtre pour choisir l'image à importer (format jpeg/png)
+     * @param actionEvent Event Swing
+     */
+    public void onImportButtonClicked(ActionEvent actionEvent)
+    {
         imageChoosen(currentView.chooseImage());
     }
 
+    /**
+     * Lance la reconnaissance sur l'image sélectionnée
+     * @param actionEvent Event Swing
+     */
     public void onLanceButtonClicked(ActionEvent actionEvent)
     {
         //TODO
