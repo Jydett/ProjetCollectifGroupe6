@@ -30,4 +30,6 @@ public class ImageChosenController extends Controller<ImageChosenView, ImageChos
     public String getSelectedImage() {
         return fileSelected == null ? null : fileSelected.getAbsolutePath();
     }
+
+
 }

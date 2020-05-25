@@ -42,8 +42,8 @@ public class TabbedFrame extends JFrame {
         Insets insets = contentPane.getInsets();
         preferredSize.width += insets.right;
         preferredSize.height += insets.bottom;
-        contentPane.setMinimumSize(preferredSize);
-        contentPane.setPreferredSize(preferredSize);
+        contentPane.setMinimumSize(new Dimension(950, 600));
+        contentPane.setPreferredSize(new Dimension(950, 600));
         super.pack();
         setLocationRelativeTo(getOwner());
     }

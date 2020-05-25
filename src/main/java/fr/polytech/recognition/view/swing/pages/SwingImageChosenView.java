@@ -35,8 +35,9 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
                 //---- image2 ----
                 imageChosen.setText("Votre image apparaitra ici");
                 imageChosen.setBackground(new Color(204, 204, 204));
-                imageChosen.setFont(new Font("Avenir", Font.PLAIN, 13));
-                imageChosen.setEnabled(false);
+                imageChosen.setForeground(new Color(148,148,148));
+                imageChosen.setFont(new Font("Avenir", Font.PLAIN, 16));
+                imageChosen.setEnabled(true);
                 imageChosen.setHorizontalAlignment(SwingConstants.CENTER);
                 imageChosen.setIcon(new ImageIcon(this.getClass().getResource("/images/icon-image.png")));
                 splitPaneInResult.setLeftComponent(imageChosen);
@@ -76,11 +77,16 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
 
     @Override
     public String getTitle() {//TODO i18n
-        return "Choisir son image";
+        return "Analyser l'image";
     }
 
     @Override
     public int priority() {
         return PageOrder.IMAGE_CHOOSEN_ORDER;
+    }
+
+    @Override
+    public Icon getIcon() {
+        return super.getIcon();
     }
 }

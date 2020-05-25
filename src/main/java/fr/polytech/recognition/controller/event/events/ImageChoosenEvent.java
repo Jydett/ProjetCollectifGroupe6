@@ -11,4 +11,6 @@ import java.io.File;
 public class ImageChoosenEvent implements Event {
 
     private final File fileSelected;
+
+
 }
