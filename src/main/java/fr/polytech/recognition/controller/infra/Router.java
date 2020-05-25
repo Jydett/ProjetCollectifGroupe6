@@ -1,22 +1,36 @@
 package fr.polytech.recognition.controller.infra;
 
+import fr.polytech.recognition.ai.impl.TensorflowClassifier;
+import fr.polytech.recognition.context.ClassifierContext;
 import fr.polytech.recognition.controller.Controller;
 import fr.polytech.recognition.context.ContextHolder;
 import fr.polytech.recognition.context.impl.SwingContextHolder;
-import fr.polytech.recognition.controller.event.Event;
-import fr.polytech.recognition.controller.event.EventManager;
+import fr.polytech.recognition.event.Event;
+import fr.polytech.recognition.event.EventManager;
 import fr.polytech.recognition.dao.context.DaoContext;
 import fr.polytech.recognition.dao.context.impl.NoDaoContext;
+import fr.polytech.recognition.model.database.ArticleType;
 import fr.polytech.recognition.view.ViewContext;
 import lombok.Getter;
 
 import javax.swing.*;
+import java.util.Collections;
 import java.util.logging.Logger;
 
 public class Router {
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> Router.getInstance().init(new SwingContextHolder(), new NoDaoContext()));
+        SwingUtilities.invokeLater(() -> Router.getInstance().init(
+            new SwingContextHolder(), new NoDaoContext(),
+            new ClassifierContext<String, ArticleType>(
+                new TensorflowClassifier("/tensorflow_inception_graph.pb",
+                "/imagenet_comp_graph_label_strings.txt",
+                224,224, 117f, 1f),
+                recognitionResult -> {
+                    return Collections.emptyList();//TODO
+                }
+            ))
+        );
     }
 
     private static final Logger LOGGER = Logger.getLogger("Router");
@@ -26,6 +40,8 @@ public class Router {
     @Getter
     private EventManager eventManager;
     private ContextHolder contextHolder;
+    private DaoContext daoContext;
+    private ClassifierContext<?, ?> classifierContext;
 
     private static final Router INSTANCE = new Router();
 
@@ -33,7 +49,9 @@ public class Router {
         return INSTANCE;
     }
 
-    public void init(ContextHolder contextHolder, DaoContext daoContext) {
+    public void init(ContextHolder contextHolder, DaoContext daoContext, ClassifierContext<?, ?> classifierContext) {
+        this.daoContext = daoContext;
+        this.classifierContext = classifierContext;
         daoContext.init();
         this.contextHolder = contextHolder;
         registry = new ControllerRegistry(this);
@@ -41,6 +59,7 @@ public class Router {
 
         contextHolder.getCurrentContext().init(registry);
         eventManager = new EventManager(registry);
+        eventManager.register(classifierContext);
         currentController = registry.getController("chooseImage").get();
         getViewContext().switchView(currentController);
     }

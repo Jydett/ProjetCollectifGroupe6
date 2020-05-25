@@ -1,4 +1,4 @@
-package fr.polytech.recognition.controller.event;
+package fr.polytech.recognition.event;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

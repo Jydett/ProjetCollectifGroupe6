@@ -1,8 +1,10 @@
-package fr.polytech.recognition.controller.event;
+package fr.polytech.recognition.event;
 
 import fr.polytech.recognition.controller.Controller;
 import fr.polytech.recognition.controller.infra.ControllerRegistration;
 import fr.polytech.recognition.controller.infra.ControllerRegistry;
+import fr.polytech.recognition.controller.infra.di.InjectionManager;
+import fr.polytech.recognition.exception.RegistrationError;
 import lombok.AllArgsConstructor;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
@@ -18,16 +20,27 @@ public class EventManager {
     private static final HashMap<String, List<EventRegistration>> EVENT_REGISTRATION = new HashMap<>();
 
     public EventManager(ControllerRegistry registry) {
-        Set<Method> eventHandler = new Reflections("fr.polytech.recognition.controller", new MethodAnnotationsScanner()).getMethodsAnnotatedWith(EventHandler.class);
+        Set<Method> eventHandler = new Reflections("fr.polytech.recognition.controller", new MethodAnnotationsScanner())
+                .getMethodsAnnotatedWith(EventHandler.class);
         for (Method method : eventHandler) {
-            if (method.getParameterCount() == 1) {
-                //TODO verifier que le param extend Event
-                String eventId = method.getParameters()[0].getType().getSimpleName();
-                String contrId = method.getDeclaringClass().getAnnotation(ControllerRegistration.class).name();
-                Optional<Controller> controller = registry.getController(contrId);
-                List<EventRegistration> registrations = EVENT_REGISTRATION.computeIfAbsent(eventId, k -> new ArrayList<>());
-                registrations.add(new EventRegistration(controller.get(), method));
-            }
+            Class<?> declaringClass = method.getDeclaringClass();
+            ControllerRegistration annotation = declaringClass.getAnnotation(ControllerRegistration.class);
+            String contrId = annotation.name();
+            Optional<Controller> controller = registry.getController(contrId);
+            String eventId = method.getParameters()[0].getType().getSimpleName();
+            EventRegistration registration = new EventRegistration(controller.get(), method);
+            List<EventRegistration> registrations = EVENT_REGISTRATION.computeIfAbsent(eventId, k -> new ArrayList<>());
+            registrations.add(registration);
+        }
+    }
+
+    public void register(Object o) {
+        Class<?> declaringClass = o.getClass();
+        for (Method method : declaringClass.getDeclaredMethods()) {
+            EventRegistration registration = new EventRegistration(o, method);
+            String eventId = method.getParameters()[0].getType().getSimpleName();
+            List<EventRegistration> registrations = EVENT_REGISTRATION.computeIfAbsent(eventId, k -> new ArrayList<>());
+            registrations.add(registration);
         }
     }
 

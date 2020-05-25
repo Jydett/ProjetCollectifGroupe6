@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Image classification using a tensorflow model
  */
-public class TensorflowClassifier implements Classifier {
+public class TensorflowClassifier implements Classifier<String> {
     private Session session;
     private Graph modelGraph;
     private List<String> labels;

@@ -1,6 +1,5 @@
 package fr.polytech.recognition.controller;
 
-import fr.polytech.recognition.controller.event.events.ImageChoosenEvent;
 import fr.polytech.recognition.controller.infra.ControllerRegistration;
 import fr.polytech.recognition.controller.infra.Router;
 import fr.polytech.recognition.model.ArticleCaractModel;
@@ -10,7 +9,6 @@ import fr.polytech.recognition.view.ArticleCaractView;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
