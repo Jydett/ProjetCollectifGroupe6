@@ -8,7 +8,6 @@ import fr.polytech.recognition.model.Model;
 import lombok.RequiredArgsConstructor;
 import org.reflections.Reflections;
 
-import javax.xml.ws.Provider;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
