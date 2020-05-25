@@ -50,8 +50,9 @@ public class SwingChooseImageView extends SwingView implements ChooseImageView {
             //---- image ----
             imageLabel.setText("Votre image apparaitra ici");
             imageLabel.setBackground(new Color(204, 204, 204));
-            imageLabel.setFont(new Font("Avenir", Font.PLAIN, 13));
-            imageLabel.setEnabled(false);
+            imageLabel.setForeground(new Color(148,148,148));
+            imageLabel.setFont(new Font("Avenir", Font.PLAIN, 16));
+            imageLabel.setEnabled(true);
             imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
             imageLabel.setIcon(new ImageIcon(this.getClass().getResource("/images/icon-image.png")));
             ImportPanel.add(imageLabel);
@@ -90,6 +91,7 @@ public class SwingChooseImageView extends SwingView implements ChooseImageView {
         jFileChooser.setFileFilter(IMG_FILTER);
         int res = jFileChooser.showDialog(null, "Approve");
         if (res == JFileChooser.APPROVE_OPTION) {
+            setImageLabel(jFileChooser.getSelectedFile());
             return jFileChooser.getSelectedFile();
         }
         return null;
@@ -109,4 +111,45 @@ public class SwingChooseImageView extends SwingView implements ChooseImageView {
     public int priority() {
         return PageOrder.CHOOSE_IMAGE_ORDER;
     }
+
+    @Override
+    public Icon getIcon() {
+        return super.getIcon();
+    }
+
+    public void setImageLabel(File fileSelected){
+        String path = fileSelected.getAbsolutePath();
+        ImageIcon icon=new ImageIcon(path);
+
+        // Scale the picture proportionally
+        int imgWidth = icon.getIconWidth();
+        int imgHeight = icon.getIconHeight();
+        int conWidth = getWidth();
+        int conHeight = getHeight();
+        int reImgWidth;
+        int reImgHeight;
+        if(imgWidth / imgHeight >= conWidth / conHeight){
+            if(imgWidth > conWidth){
+                reImgWidth = conWidth;
+                reImgHeight = imgHeight * reImgWidth / imgWidth;
+            }else{
+                reImgWidth = imgWidth;
+                reImgHeight = imgHeight;
+            }
+        }else{
+            if(imgWidth > conWidth){
+                reImgHeight = conHeight;
+                reImgWidth = imgWidth * reImgHeight / imgHeight;
+            }else{
+                reImgWidth = imgWidth;
+                reImgHeight = imgHeight;
+            }
+        }
+        // Scale the picture proportionally
+        icon = new ImageIcon(icon.getImage().getScaledInstance(reImgWidth, reImgHeight, Image.SCALE_DEFAULT));
+
+        // put the image into imageLabel
+        imageLabel.setIcon(icon);
+    }
+
 }
