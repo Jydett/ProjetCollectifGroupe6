@@ -82,7 +82,10 @@ public class SwingArticleCaractView extends SwingView implements ArticleCaractVi
         return "Résultat";
     }
 
-
+    @Override
+    public int priority() {
+        return PageOrder.ARTICLE_CHARAC_ORDER;
+    }
 
     private JPanel CharacterPanel;
     private JSplitPane splitPaneInCharacter;

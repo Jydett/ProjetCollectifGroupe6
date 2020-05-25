@@ -78,4 +78,9 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
     public String getTitle() {//TODO i18n
         return "Choisir son image";
     }
+
+    @Override
+    public int priority() {
+        return PageOrder.IMAGE_CHOOSEN_ORDER;
+    }
 }

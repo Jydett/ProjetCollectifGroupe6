@@ -9,4 +9,6 @@ public abstract class SwingView extends JPanel {
     public Icon getIcon() {
         return null;
     }
+
+    public abstract int priority();
 }

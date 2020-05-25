@@ -104,4 +104,9 @@ public class SwingChooseImageView extends SwingView implements ChooseImageView {
     public String getTitle() {
         return "Analyser l'image";
     }
+
+    @Override
+    public int priority() {
+        return PageOrder.CHOOSE_IMAGE_ORDER;
+    }
 }

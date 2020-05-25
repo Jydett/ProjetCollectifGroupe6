@@ -26,10 +26,12 @@ public class SwingViewTabbedContext implements ViewContext {
         frame = new TabbedFrame(this);
         Iterator<? extends Supplier<Controller<?, ?>>> it = registry.iterator();
         while (it.hasNext()) {
-            Controller<?, ?> controller = it.next().get();
+            controllers.add(it.next().get());
+        }
+        controllers.sort((c1, c2) -> Integer.compare(((SwingView) c1.getCurrentView()).priority(), ((SwingView) c2.getCurrentView()).priority()));
+        for (Controller<?, ?> controller : controllers) {
             SwingView view = (SwingView) controller.getCurrentView();
             frame.getTabbedPanel().addTab(view.getTitle(), view.getIcon(), view);
-            controllers.add(controller);
         }
         frame.setVisible(true);
         frame.pack();
