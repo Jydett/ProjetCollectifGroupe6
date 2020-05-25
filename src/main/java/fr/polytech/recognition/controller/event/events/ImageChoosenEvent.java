@@ -4,6 +4,7 @@ import fr.polytech.recognition.controller.event.Event;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import javax.swing.*;
 import java.io.File;
 
 @AllArgsConstructor
@@ -11,6 +12,5 @@ import java.io.File;
 public class ImageChoosenEvent implements Event {
 
     private final File fileSelected;
-
 
 }
