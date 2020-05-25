@@ -37,17 +37,36 @@ public class ArticleCaractController extends Controller<ArticleCaractView, Artic
         tableMod.setRowCount(0); // Clear the Table of all of his rows
 
         List<Object> listHeader = new ArrayList<Object>( );
-        listHeader.add("Type d'article"); listHeader.add("Nom"); listHeader.add("Prix"); listHeader.add("Lien Vendeur");
+        listHeader.add("Article"); listHeader.add("Type d'article"); listHeader.add("Nom"); listHeader.add("Prix"); listHeader.add("Lien Vendeur");
         tableMod.addRow(listHeader.toArray());
 
         List<Object> listTable = new ArrayList<Object>();
 
+        listTable.add(artSelected);
         listTable.add(artSelected.getArticleType());
         listTable.add(artSelected.getName());
         listTable.add(artSelected.getPrice());
         listTable.add(artSelected.getVendorLink());
 
         tableMod.addRow(listTable.toArray());
+    }
+
+    /**
+     * Enregistre l'article selectionné
+     * @param actionEvent Event Swing
+     */
+    public void btnSaveArticleActionPerformed(ActionEvent actionEvent)
+    {
+        //TODO
+    }
+
+    /**
+     * Supprime l'article selectionné
+     * @param actionEvent Event Swing
+     */
+    public void btnDeleteArticleActionPerformed(ActionEvent actionEvent, Article artSelected)
+    {
+
     }
 
 }
