@@ -69,7 +69,7 @@ public final class ControllerRegistry {
         return controller.getClass().getAnnotation(ControllerRegistration.class).name();
     }
 
-    public Iterator<? extends Supplier<Controller<?, ?>>> iterator() {//TODO ordre !!!!
+    public Iterator<? extends Supplier<Controller<?, ?>>> iterator() {
         return CONTROLLERS.values().iterator();
     }
 
@@ -89,16 +89,7 @@ public final class ControllerRegistry {
                 } catch (Exception e) {
                     throw new RegistrationError("An error has occured while creating the controller " + constructor.getDeclaringClass().getSimpleName(), e);
                 }
-                try {
-                    for (Field field : instance.getClass().getFields()) {
-                        if (field.getAnnotation(Inject.class) != null) {
-                            field.setAccessible(true);
-                            field.set(instance, InjectionManager.get(field.getType()));
-                        }
-                    }
-                } catch (Exception e) {
-                    throw new RegistrationError("An error has occurred while injecting values in constructor " + instance.getClass().getSimpleName(), e);
-                }
+                InjectionManager.injectDependencies(instance);
                 instance.init();
             }
             return instance;

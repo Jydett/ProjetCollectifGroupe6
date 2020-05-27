@@ -8,17 +8,17 @@ import fr.polytech.recognition.event.events.ClassificationFinishedEvent;
 import fr.polytech.recognition.event.events.ImageChoosenEvent;
 import fr.polytech.recognition.controller.infra.Router;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import javax.imageio.ImageIO;
-import java.util.List;
-import java.util.function.Function;
 
 @AllArgsConstructor
 public class ClassifierContext<L, O extends Identifiable> {
 
     private Classifier<L> classifier;
 
-    private Function<RecognitionResult<L>, List<O>> transformationMethod;
+    @Getter
+    private TransformationMethod<L, O> transformationMethod;
 
     @EventHandler
     public void onImageChoose(ImageChoosenEvent event) {

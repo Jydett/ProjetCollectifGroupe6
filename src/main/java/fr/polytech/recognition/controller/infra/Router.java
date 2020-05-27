@@ -2,19 +2,19 @@ package fr.polytech.recognition.controller.infra;
 
 import fr.polytech.recognition.ai.impl.TensorflowClassifier;
 import fr.polytech.recognition.context.ClassifierContext;
+import fr.polytech.recognition.context.impl.ai.LabelToArticleTypeTransformationMethod;
 import fr.polytech.recognition.controller.Controller;
 import fr.polytech.recognition.context.ContextHolder;
-import fr.polytech.recognition.context.impl.SwingContextHolder;
+import fr.polytech.recognition.context.impl.view.SwingContextHolder;
+import fr.polytech.recognition.controller.infra.di.InjectionManager;
 import fr.polytech.recognition.event.Event;
 import fr.polytech.recognition.event.EventManager;
 import fr.polytech.recognition.dao.context.DaoContext;
 import fr.polytech.recognition.dao.context.impl.NoDaoContext;
-import fr.polytech.recognition.model.database.Article;
 import fr.polytech.recognition.view.ViewContext;
 import lombok.Getter;
 
 import javax.swing.*;
-import java.util.Collections;
 import java.util.logging.Logger;
 
 public class Router {
@@ -22,13 +22,11 @@ public class Router {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> Router.getInstance().init(
             new SwingContextHolder(), new NoDaoContext(),
-            new ClassifierContext<String, Article>(
+            new ClassifierContext<>(
                 new TensorflowClassifier("/tensorflow_inception_graph.pb",
                 "/imagenet_comp_graph_label_strings.txt",
                 224,224, 117f, 1f),
-                recognitionResult -> {
-                    return Collections.emptyList();//TODO
-                }
+                new LabelToArticleTypeTransformationMethod()
             ))
         );
     }
@@ -56,10 +54,10 @@ public class Router {
         this.contextHolder = contextHolder;
         registry = new ControllerRegistry(this);
         contextHolder.init(registry);
-
         contextHolder.getCurrentContext().init(registry);
         eventManager = new EventManager(registry);
         eventManager.register(classifierContext);
+        InjectionManager.injectDependencies(classifierContext.getTransformationMethod());
         currentController = registry.getController("chooseImage").get();
         getViewContext().switchView(currentController);
     }

@@ -1,4 +1,4 @@
-package fr.polytech.recognition.context.impl;
+package fr.polytech.recognition.context.impl.view;
 
 import fr.polytech.recognition.controller.infra.ControllerRegistry;
 import fr.polytech.recognition.context.ContextHolder;

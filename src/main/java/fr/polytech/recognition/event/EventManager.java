@@ -37,10 +37,12 @@ public class EventManager {
     public void register(Object o) {
         Class<?> declaringClass = o.getClass();
         for (Method method : declaringClass.getDeclaredMethods()) {
-            EventRegistration registration = new EventRegistration(o, method);
-            String eventId = method.getParameters()[0].getType().getSimpleName();
-            List<EventRegistration> registrations = EVENT_REGISTRATION.computeIfAbsent(eventId, k -> new ArrayList<>());
-            registrations.add(registration);
+            if (method.getAnnotation(EventHandler.class) != null) {
+                EventRegistration registration = new EventRegistration(o, method);
+                String eventId = method.getParameters()[0].getType().getSimpleName();
+                List<EventRegistration> registrations = EVENT_REGISTRATION.computeIfAbsent(eventId, k -> new ArrayList<>());
+                registrations.add(registration);
+            }
         }
     }
 
