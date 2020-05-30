@@ -8,6 +8,7 @@ import fr.polytech.recognition.model.database.Article;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class LabelToArticleTypeTransformationMethod implements TransformationMethod<String, Article> {
 
@@ -15,7 +16,7 @@ public class LabelToArticleTypeTransformationMethod implements TransformationMet
     private ArticleDao dao;
 
     @Override
-    public List<Article> apply(RecognitionResult<String> recognitionResult) {
-        return Collections.emptyList();//TODO
+    public Map<Article, Float> apply(RecognitionResult<String> recognitionResult) {
+        return Collections.emptyMap();//TODO
     }
 }

@@ -25,7 +25,7 @@ public class ClassifierContext<L, O extends Identifiable> {
         try {
             RecognitionResult<L> prediction = classifier.prediction(ImageIO.read(event.getFileSelected()));
             Router.getInstance().getEventManager()
-                    .dispatch(new ClassificationFinishedEvent<O>(transformationMethod.apply(prediction)));
+                    .dispatch(new ClassificationFinishedEvent<>(transformationMethod.apply(prediction)));
         } catch (Exception e) {
             e.printStackTrace();
             Router.getInstance().getEventManager().dispatch(new ClassificationFinishedEvent(e));
