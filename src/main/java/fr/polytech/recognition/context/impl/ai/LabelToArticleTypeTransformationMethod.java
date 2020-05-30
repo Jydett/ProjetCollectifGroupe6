@@ -10,11 +10,18 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Transforme une liste de label en une liste d'article
+ * @see fr.polytech.recognition.context.TransformationMethod
+ */
 public class LabelToArticleTypeTransformationMethod implements TransformationMethod<String, Article> {
 
     @Inject
     private ArticleDao dao;
 
+    /**
+     * Lance la transformation
+     */
     @Override
     public Map<Article, Float> apply(RecognitionResult<String> recognitionResult) {
         return Collections.emptyMap();//TODO
