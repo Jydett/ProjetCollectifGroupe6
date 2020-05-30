@@ -30,9 +30,8 @@ public class ImageChosenController extends Controller<ImageChosenView, ImageChos
     @EventHandler
     public void onRecognitionResult(ClassificationFinishedEvent<Article> event) {
         System.out.println("Resultat recu : " + event.toString());
+        getCurrentView().afficherArticleList(event.getRes());
     }
-
-
 
     public String getSelectedImage() {
         return fileSelected == null ? null : fileSelected.getAbsolutePath();

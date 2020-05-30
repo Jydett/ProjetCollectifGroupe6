@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class SwingImageChosenView extends SwingView implements ImageChosenView {
 
@@ -79,7 +80,7 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
     private JScrollPane scrollPaneInResult;
     private JTable ResultTable;
 
-    public void afficherArticleList(List<Article> artList){
+    public void afficherArticleList(Map<Article, Float> res){
         DefaultTableModel tableMod = (DefaultTableModel) ResultTable.getModel();
         tableMod.setRowCount(0); // Clear the Table of all of his rows
 
@@ -87,12 +88,12 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
         listHeader.add("Article"); listHeader.add("Rechercher");listHeader.add("Probabilité");
         tableMod.addRow(listHeader.toArray());
 
-        for(Article article: artList){
+        for(Map.Entry<Article, Float> entry: res.entrySet()){
             List<Object> listTable = new ArrayList<Object>();
 
-            listTable.add(article.getName());
-            listTable.add(article.getVendorLink());
-            listTable.add(article);
+            listTable.add(entry.getKey()); // Article
+            listTable.add(entry.getKey().getVendorLink()); // link of Article
+            listTable.add(entry.getValue()); // Float
 
             tableMod.addRow(listTable.toArray());
         }
