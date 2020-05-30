@@ -7,6 +7,7 @@ import fr.polytech.recognition.view.ViewContext;
 import lombok.Getter;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Supplier;
@@ -28,7 +29,7 @@ public class SwingViewTabbedContext implements ViewContext {
         while (it.hasNext()) {
             controllers.add(it.next().get());
         }
-        controllers.sort((c1, c2) -> Integer.compare(((SwingView) c1.getCurrentView()).priority(), ((SwingView) c2.getCurrentView()).priority()));
+        controllers.sort(Comparator.comparingInt(c -> ((SwingView) c.getCurrentView()).priority()));
         for (Controller<?, ?> controller : controllers) {
             SwingView view = (SwingView) controller.getCurrentView();
             frame.getTabbedPanel().addTab(view.getTitle(), view.getIcon(), view);
