@@ -31,7 +31,7 @@ public class ChooseImageController extends Controller<ChooseImageView, ChooseIma
      */
     public void onImportButtonClicked(ActionEvent actionEvent)
     {
-        imageChoosen(currentView.chooseImage());
+        model.setFileSelected(currentView.chooseImage());
     }
 
     /**
@@ -40,9 +40,14 @@ public class ChooseImageController extends Controller<ChooseImageView, ChooseIma
      */
     public void onLanceButtonClicked(ActionEvent actionEvent)
     {
-        //TODO
+        if(model.getFileSelected() != null)
+            imageChoosen(model.getFileSelected());
     }
 
+    /**
+     * Crée un event qui envoie l'image sélectionnée vers la partie reconnaissance d'image
+     * @param selectedFile Image selectionnée
+     */
     public void imageChoosen(File selectedFile) {
         rooter.dispatchEvent(new ImageChoosenEvent(selectedFile));
         //rooter.nextController("imageChosen"); // Par @Yuman
