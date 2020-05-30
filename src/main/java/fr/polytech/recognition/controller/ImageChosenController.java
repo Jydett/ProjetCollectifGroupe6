@@ -32,24 +32,7 @@ public class ImageChosenController extends Controller<ImageChosenView, ImageChos
         System.out.println("Resultat recu : " + event.toString());
     }
 
-    public void affichageArticleList(JTable tabArticle, List<Article> artList){
-        DefaultTableModel tableMod = (DefaultTableModel) tabArticle.getModel();
-        tableMod.setRowCount(0); // Clear the Table of all of his rows
 
-        List<Object> listHeader = new ArrayList<Object>( );
-        listHeader.add("Article"); listHeader.add("Rechercher");listHeader.add("Probabilité");
-        tableMod.addRow(listHeader.toArray());
-
-        for(Article article: artList){
-            List<Object> listTable = new ArrayList<Object>();
-
-            listTable.add(article.getName());
-            listTable.add(article.getVendorLink());
-            listTable.add(article);
-
-            tableMod.addRow(listTable.toArray());
-        }
-    }
 
     public String getSelectedImage() {
         return fileSelected == null ? null : fileSelected.getAbsolutePath();

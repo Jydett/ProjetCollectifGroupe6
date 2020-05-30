@@ -1,13 +1,17 @@
 package fr.polytech.recognition.view.swing.pages;
 
 import fr.polytech.recognition.controller.ImageChosenController;
+import fr.polytech.recognition.model.database.Article;
 import fr.polytech.recognition.view.ImageChosenView;
 import fr.polytech.recognition.view.swing.SwingView;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SwingImageChosenView extends SwingView implements ImageChosenView {
 
@@ -74,6 +78,25 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
     private JLabel imageChosen;
     private JScrollPane scrollPaneInResult;
     private JTable ResultTable;
+
+    public void afficherArticleList(List<Article> artList){
+        DefaultTableModel tableMod = (DefaultTableModel) ResultTable.getModel();
+        tableMod.setRowCount(0); // Clear the Table of all of his rows
+
+        java.util.List<Object> listHeader = new ArrayList<Object>( );
+        listHeader.add("Article"); listHeader.add("Rechercher");listHeader.add("Probabilité");
+        tableMod.addRow(listHeader.toArray());
+
+        for(Article article: artList){
+            List<Object> listTable = new ArrayList<Object>();
+
+            listTable.add(article.getName());
+            listTable.add(article.getVendorLink());
+            listTable.add(article);
+
+            tableMod.addRow(listTable.toArray());
+        }
+    }
 
     @Override
     public String getTitle() {//TODO i18n
