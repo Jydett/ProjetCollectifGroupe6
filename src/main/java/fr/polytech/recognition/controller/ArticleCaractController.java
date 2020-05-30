@@ -2,6 +2,9 @@ package fr.polytech.recognition.controller;
 
 import fr.polytech.recognition.controller.infra.ControllerRegistration;
 import fr.polytech.recognition.controller.infra.Router;
+import fr.polytech.recognition.event.EventHandler;
+import fr.polytech.recognition.event.events.ArticleClickedEvent;
+import fr.polytech.recognition.event.events.ClassificationFinishedEvent;
 import fr.polytech.recognition.model.ArticleCaractModel;
 import fr.polytech.recognition.model.database.Article;
 import fr.polytech.recognition.view.ArticleCaractView;
@@ -24,46 +27,15 @@ public class ArticleCaractController extends Controller<ArticleCaractView, Artic
         setView(rooter.createView(ArticleCaractView.class));
     }
 
-    /**
-     * Appellé lors du click sur un article dans l'écran ImageChosen. Ajoute les données de l'article selectionné dans le Jtab.
-     * @param tabArticle Jtab sur lequel les données sont affichés
-     * @param artSelected Article selectionné dans le Jtab d'ImageChosen
-     */
-    public void populateArticleTab(JTable tabArticle, Article artSelected)
-    {
-        DefaultTableModel tableMod = (DefaultTableModel) tabArticle.getModel();
-        tableMod.setRowCount(0); // Clear the Table of all of his rows
 
-        List<Object> listHeader = new ArrayList<Object>( );
-        listHeader.add("Article"); listHeader.add("Nom"); listHeader.add("Prix"); listHeader.add("Lien Vendeur");
-        tableMod.addRow(listHeader.toArray());
-
-        List<Object> listTable = new ArrayList<Object>();
-
-        listTable.add(artSelected);
-        listTable.add(artSelected.getName());
-        listTable.add(artSelected.getPrice());
-        listTable.add(artSelected.getVendorLink());
-
-        tableMod.addRow(listTable.toArray());
-    }
 
     /**
-     * Enregistre l'article selectionné
-     * @param actionEvent Event Swing
+     * Event déclenché quand on clique sur un article sur la page ImageChosen. Appelle populateArticleTab
+     * @param event Contient l'article selectionné sur la page ImageChosen
      */
-    public void btnSaveArticleActionPerformed(ActionEvent actionEvent)
-    {
-        //TODO
-    }
-
-    /**
-     * Supprime l'article selectionné
-     * @param actionEvent Event Swing
-     */
-    public void btnDeleteArticleActionPerformed(ActionEvent actionEvent, Article artSelected)
-    {
-
+    @EventHandler
+    public void onRecognitionResult(ArticleClickedEvent event) {
+        getCurrentView().populateArticleTab(event.getArtSelected());
     }
 
 }

@@ -11,7 +11,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 
 public class SwingArticleCaractView extends SwingView implements ArticleCaractView {
 
@@ -101,6 +104,29 @@ public class SwingArticleCaractView extends SwingView implements ArticleCaractVi
 
         }
 
+    }
+
+    /**
+     *  Ajoute les données de l'article selectionné dans le Jtab.
+     * @param artSelected Article selectionné dans le Jtab d'ImageChosen
+     */
+    public void populateArticleTab(Article artSelected)
+    {
+        DefaultTableModel tableMod = (DefaultTableModel) CharacterTable.getModel();
+        tableMod.setRowCount(0); // Clear the Table of all of his rows
+
+        java.util.List<Object> listHeader = new ArrayList<Object>( );
+        listHeader.add("Article"); listHeader.add("Nom"); listHeader.add("Prix"); listHeader.add("Lien Vendeur");
+        tableMod.addRow(listHeader.toArray());
+
+        List<Object> listTable = new ArrayList<Object>();
+
+        listTable.add(artSelected);
+        listTable.add(artSelected.getName());
+        listTable.add(artSelected.getPrice());
+        listTable.add(artSelected.getVendorLink());
+
+        tableMod.addRow(listTable.toArray());
     }
 
     @Override

@@ -9,6 +9,7 @@ import fr.polytech.recognition.model.database.Article;
 import fr.polytech.recognition.view.ImageChosenView;
 
 import java.io.File;
+import java.util.List;
 
 @ControllerRegistration(name = "imageChosen")
 public class ImageChosenController extends Controller<ImageChosenView, ImageChosenModel> {
