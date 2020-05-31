@@ -4,6 +4,7 @@ import fr.polytech.recognition.controller.ImageChosenController;
 import fr.polytech.recognition.model.database.Article;
 import fr.polytech.recognition.view.ImageChosenView;
 import fr.polytech.recognition.view.swing.SwingView;
+import fr.polytech.recognition.view.swing.model.ArticleTableModel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -88,10 +89,10 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
         listHeader.add("Article"); listHeader.add("Rechercher");listHeader.add("Probabilité");
         tableMod.addRow(listHeader.toArray());
 
-        for(Map.Entry<Article, Float> entry: res.entrySet()){
+        for(Map.Entry<Article, Float> entry : res.entrySet()){
             List<Object> listTable = new ArrayList<Object>();
 
-            listTable.add(entry.getKey()); // Article
+            listTable.add(entry.getKey().getName()); // Article
             listTable.add(entry.getKey().getVendorLink()); // link of Article
             listTable.add(entry.getValue()); // Float
 
