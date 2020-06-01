@@ -11,9 +11,7 @@ import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 import org.tensorflow.op.sparse.SparseReduceMax;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Transforme une liste de label en une liste d'article
@@ -29,6 +27,29 @@ public class LabelToArticleTypeTransformationMethod implements TransformationMet
      */
     @Override
     public Map<Article, Float> apply(RecognitionResult<String> recognitionResult) {
-        return Collections.emptyMap();//TODO
+        Map<Article, Float> foundArticle = new HashMap<Article, Float>();
+
+        Session session = new Configuration().configure().buildSessionFactory().openSession();
+        HibernateArticleDao dao = new HibernateArticleDao(session);
+        Collection<Article> articles = dao.getAll();
+
+        Iterator<Prediction<String>> predIt = recognitionResult.getPredictions().iterator();
+        // for every label
+        while (predIt.hasNext()) {
+            Prediction<String> prediction = predIt.next();
+            // remove bad predictions
+            if (prediction.getValue() < 0.3) continue;
+            Iterator<Article> articleIterator = articles.iterator();
+            // for every article type
+            while(articleIterator.hasNext()) {
+                Article article = articleIterator.next();
+                String articleName = article.getName();
+                System.out.println("db article name : " + articleName);
+                // if article type matches label
+                if (prediction.getObject().compareToIgnoreCase(articleName)==0) foundArticle.put(article, prediction.getValue());
+            }
+        }
+        return foundArticle;
+
     }
 }
