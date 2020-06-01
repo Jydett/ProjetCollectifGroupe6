@@ -12,12 +12,21 @@ public abstract class Controller<V extends View, M extends Model> {
     protected V currentView;
     protected M model;
 
+    @Getter
+    private boolean initiliazed;
+
     public Controller(Router rooter, M model) {
         this.rooter = rooter;
         this.model = model;
+        this.initiliazed = false;
     }
 
-    public abstract void init();
+    public void init() {
+        initialize();
+        initiliazed = true;
+    }
+
+    protected abstract void initialize();
 
     protected void setView(V currentView) {
         this.currentView = currentView;

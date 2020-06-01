@@ -23,7 +23,7 @@ public class ImageChosenController extends Controller<ImageChosenView, ImageChos
         super(rooter, model);
     }
 
-    public void init() {
+    protected void initialize() {
         setView(rooter.createView(ImageChosenView.class));
     }
 

@@ -23,7 +23,7 @@ public class ArticleCaractController extends Controller<ArticleCaractView, Artic
         super(rooter, model);
     }
 
-    public void init() {
+    protected void initialize() {
         setView(rooter.createView(ArticleCaractView.class));
     }
 
