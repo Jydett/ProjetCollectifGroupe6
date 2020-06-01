@@ -43,7 +43,7 @@ public class SwingArticleCaractView extends SwingView implements ArticleCaractVi
             {
 
                 //---- image3 ----
-                imageCharacter.setText("Votre image apparaitra ici");
+                imageCharacter.setText(" image");
                 imageCharacter.setBackground(new Color(204, 204, 204));
                 imageCharacter.setForeground(new Color(148, 148, 148));
                 imageCharacter.setFont(new Font("Avenir", Font.PLAIN, 16));
@@ -131,7 +131,7 @@ public class SwingArticleCaractView extends SwingView implements ArticleCaractVi
 
     @Override
     public String getTitle() {
-        return "Caractéristique un article";
+        return "     Caractéristique un article     ";
     }
 
     @Override

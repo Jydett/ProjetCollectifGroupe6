@@ -1,5 +1,10 @@
 package fr.polytech.recognition.view;
 
-public interface ImageChosenView extends View {
+import fr.polytech.recognition.model.database.Article;
 
+import java.util.List;
+import java.util.Map;
+
+public interface ImageChosenView extends View {
+    void afficherArticleList(Map<Article, Float> res);
 }

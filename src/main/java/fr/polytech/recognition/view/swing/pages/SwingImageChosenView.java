@@ -1,13 +1,19 @@
 package fr.polytech.recognition.view.swing.pages;
 
 import fr.polytech.recognition.controller.ImageChosenController;
+import fr.polytech.recognition.model.database.Article;
 import fr.polytech.recognition.view.ImageChosenView;
 import fr.polytech.recognition.view.swing.SwingView;
+import fr.polytech.recognition.view.swing.model.ArticleTableModel;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class SwingImageChosenView extends SwingView implements ImageChosenView {
 
@@ -33,7 +39,7 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
             {
 
                 //---- image2 ----
-                imageChosen.setText("Votre image apparaitra ici");
+                imageChosen.setText(" image");
                 imageChosen.setBackground(new Color(204, 204, 204));
                 imageChosen.setForeground(new Color(148,148,148));
                 imageChosen.setFont(new Font("Avenir", Font.PLAIN, 16));
@@ -75,9 +81,28 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
     private JScrollPane scrollPaneInResult;
     private JTable ResultTable;
 
+    public void afficherArticleList(Map<Article, Float> res){
+        DefaultTableModel tableMod = (DefaultTableModel) ResultTable.getModel();
+        tableMod.setRowCount(0); // Clear the Table of all of his rows
+
+        java.util.List<Object> listHeader = new ArrayList<Object>( );
+        listHeader.add("Article"); listHeader.add("Rechercher");listHeader.add("Probabilité");
+        tableMod.addRow(listHeader.toArray());
+
+        for(Map.Entry<Article, Float> entry : res.entrySet()){
+            List<Object> listTable = new ArrayList<Object>();
+
+            listTable.add(entry.getKey().getName()); // Article
+            listTable.add(entry.getKey().getVendorLink()); // link of Article
+            listTable.add(entry.getValue()); // Float
+
+            tableMod.addRow(listTable.toArray());
+        }
+    }
+
     @Override
     public String getTitle() {//TODO i18n
-        return "Analyser l'image";
+        return "    Analyser l'image    ";
     }
 
     @Override

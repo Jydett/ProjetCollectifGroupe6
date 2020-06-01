@@ -8,7 +8,10 @@ import fr.polytech.recognition.model.ImageChosenModel;
 import fr.polytech.recognition.model.database.Article;
 import fr.polytech.recognition.view.ImageChosenView;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 @ControllerRegistration(name = "imageChosen")
@@ -27,6 +30,7 @@ public class ImageChosenController extends Controller<ImageChosenView, ImageChos
     @EventHandler
     public void onRecognitionResult(ClassificationFinishedEvent<Article> event) {
         System.out.println("Resultat recu : " + event.toString());
+        getCurrentView().afficherArticleList(event.getRes());
     }
 
     public String getSelectedImage() {
