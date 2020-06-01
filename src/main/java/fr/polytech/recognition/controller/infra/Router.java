@@ -4,8 +4,8 @@ import fr.polytech.recognition.ai.impl.TensorflowClassifier;
 import fr.polytech.recognition.context.ClassifierContext;
 import fr.polytech.recognition.context.impl.ai.LabelToArticleTypeTransformationMethod;
 import fr.polytech.recognition.controller.Controller;
-import fr.polytech.recognition.context.ContextHolder;
-import fr.polytech.recognition.context.impl.view.SwingContextHolder;
+import fr.polytech.recognition.context.ViewContextHolder;
+import fr.polytech.recognition.context.impl.view.SwingViewContextHolder;
 import fr.polytech.recognition.controller.infra.di.InjectionManager;
 import fr.polytech.recognition.event.Event;
 import fr.polytech.recognition.event.EventManager;
@@ -17,13 +17,34 @@ import lombok.Getter;
 import javax.swing.*;
 import java.util.logging.Logger;
 
+/**
+ * Classe principale de l'application
+ *
+ * Sert de Facade pour
+ * <ul>
+ *     <li>le {@see ControllerRegistry}</li>
+ *     <li>l' {@see EventManager}</li>
+ *     <li>le {@see ContextHolder}</li>
+ *     <li>le {@see ClassifierContext}</li>
+ *     <li>le {@see DaoContext}</li>
+ * </ul>
+ *
+ * C'est un singleton ({@see #getInstance})
+ */
 public class Router {
 
+    /**
+     * Point d'entrée de l'application, par défaut l'application est paramétrée
+     * pour utilisé une vue tabbulaire sous Swing, des daos sous hibernate
+     * une base de reconnaissance avec Tensorflow
+     * @param args non-utilisé
+     */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> Router.getInstance().init(
-            new SwingContextHolder(), new NoDaoContext(),
+            new SwingViewContextHolder(), new NoDaoContext(),
             new ClassifierContext<>(
-                new TensorflowClassifier("/tensorflow_inception_graph.pb",
+                new TensorflowClassifier(
+                "/tensorflow_inception_graph.pb",
                 "/imagenet_comp_graph_label_strings.txt",
                 224,224, 117f, 1f),
                 new LabelToArticleTypeTransformationMethod()
@@ -37,7 +58,7 @@ public class Router {
     private ControllerRegistry registry;
     @Getter
     private EventManager eventManager;
-    private ContextHolder contextHolder;
+    private ViewContextHolder viewContextHolder;
     private DaoContext daoContext;
     private ClassifierContext<?, ?> classifierContext;
 
@@ -47,14 +68,14 @@ public class Router {
         return INSTANCE;
     }
 
-    public void init(ContextHolder contextHolder, DaoContext daoContext, ClassifierContext<?, ?> classifierContext) {
+    public void init(ViewContextHolder viewContextHolder, DaoContext daoContext, ClassifierContext<?, ?> classifierContext) {
         this.daoContext = daoContext;
         this.classifierContext = classifierContext;
         daoContext.init();
-        this.contextHolder = contextHolder;
+        this.viewContextHolder = viewContextHolder;
         registry = new ControllerRegistry(this);
-        contextHolder.init(registry);
-        contextHolder.getCurrentContext().init(registry);
+        viewContextHolder.init(registry);
+        viewContextHolder.getCurrentContext().init(registry);
         eventManager = new EventManager(registry);
         eventManager.register(classifierContext);
         InjectionManager.injectDependencies(classifierContext.getTransformationMethod());
@@ -74,11 +95,11 @@ public class Router {
     }
 
     public <V> V createView(Class<V> view) {
-        return contextHolder.getViewFactory().getView(view);
+        return viewContextHolder.getViewFactory().getView(view);
     }
 
     public ViewContext getViewContext() {
-        return contextHolder.getCurrentContext();
+        return viewContextHolder.getCurrentContext();
     }
 
     public void nextController(String name) {

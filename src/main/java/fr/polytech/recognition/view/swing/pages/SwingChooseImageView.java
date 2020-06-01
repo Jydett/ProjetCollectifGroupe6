@@ -48,7 +48,7 @@ public class SwingChooseImageView extends SwingView implements ChooseImageView {
             btnImport.setBounds(50, 35, 160, 30);
 
             //---- image ----
-            imageLabel.setText("Votre image apparaitra ici");
+            imageLabel.setText(" Votre image apparaitra ici");
             imageLabel.setBackground(new Color(204, 204, 204));
             imageLabel.setForeground(new Color(148,148,148));
             imageLabel.setFont(new Font("Avenir", Font.PLAIN, 16));
@@ -104,7 +104,7 @@ public class SwingChooseImageView extends SwingView implements ChooseImageView {
 
     @Override
     public String getTitle() {
-        return "Choisir son image";
+        return "     Choisir son image     ";
     }
 
     @Override

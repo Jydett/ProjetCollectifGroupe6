@@ -11,39 +11,24 @@ import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 import org.tensorflow.op.sparse.SparseReduceMax;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
+/**
+ * Transforme une liste de label en une liste d'article
+ * @see fr.polytech.recognition.context.TransformationMethod
+ */
 public class LabelToArticleTypeTransformationMethod implements TransformationMethod<String, Article> {
 
     @Inject
     private ArticleDao dao;
 
+    /**
+     * Lance la transformation
+     */
     @Override
-    public List<Article> apply(RecognitionResult<String> recognitionResult) {
-        ArrayList<Article> foundArticle = new ArrayList<Article>();
-
-        Session session = new Configuration().configure().buildSessionFactory().openSession();
-        HibernateArticleDao dao = new HibernateArticleDao(session);
-        Collection<Article> articles = dao.getAll();
-
-        Iterator<Prediction<String>> predIt = recognitionResult.getPredictions().iterator();
-        // for every label
-        while (predIt.hasNext()) {
-            Prediction<String> prediction = predIt.next();
-            // remove bad predictions
-            if (prediction.getValue() < 0.3) continue;
-            Iterator<Article> articleIterator = articles.iterator();
-            // for every article type
-            while(articleIterator.hasNext()) {
-                Article article = articleIterator.next();
-                String articleName = article.getName();
-                System.out.println("db article name : " + articleName);
-                // if article type matches label
-                if (prediction.getObject().contains(articleName)) foundArticle.add(article);
-            }
-        }
-
-
-        return foundArticle;//TODO
+    public Map<Article, Float> apply(RecognitionResult<String> recognitionResult) {
+        return Collections.emptyMap();//TODO
     }
 }

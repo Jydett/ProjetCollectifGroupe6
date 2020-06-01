@@ -4,19 +4,21 @@ import fr.polytech.recognition.dao.Identifiable;
 import fr.polytech.recognition.event.Event;
 import lombok.Getter;
 
-import java.util.List;
+import java.util.Map;
 
 @Getter
 public class ClassificationFinishedEvent<Bean extends Identifiable> implements Event {
-    private List<Bean> res;
-    private Throwable error;
+    private final Map<Bean, Float> res;
+    private final Throwable error;
 
-    public ClassificationFinishedEvent(List<Bean> res) {
+    public ClassificationFinishedEvent(Map<Bean, Float> res) {
         this.res = res;
+        this.error = null;
     }
 
     public ClassificationFinishedEvent(Throwable error) {
         this.error = error;
+        this.res = null;
     }
 
     @Override
