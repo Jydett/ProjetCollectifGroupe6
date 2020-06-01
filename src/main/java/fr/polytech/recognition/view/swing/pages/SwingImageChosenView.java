@@ -1,6 +1,8 @@
 package fr.polytech.recognition.view.swing.pages;
 
 import fr.polytech.recognition.controller.ImageChosenController;
+import fr.polytech.recognition.event.events.ArticleClickedEvent;
+import fr.polytech.recognition.event.events.ImageChoosenEvent;
 import fr.polytech.recognition.model.database.Article;
 import fr.polytech.recognition.view.ImageChosenView;
 import fr.polytech.recognition.view.swing.SwingView;
@@ -11,6 +13,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -57,6 +61,18 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
             ResultPanel.add(splitPaneInResult);
             splitPaneInResult.setBounds(0, 0, 915, 470);
             splitPaneInResult.setDividerLocation(400);
+
+            ResultTable.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    if(ResultTable.getSelectedRow() > 0)
+                    {
+                        ArticleTableModel atm = (ArticleTableModel) ResultTable.getModel();
+                        Article artSelected = atm.getSelectedArticle();
+                        controller.getRooter().dispatchEvent(new ArticleClickedEvent(artSelected));
+                    }
+                }
+            });
 
             {
                 // compute preferred size
