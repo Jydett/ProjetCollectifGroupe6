@@ -39,4 +39,10 @@ public class ArticleTableModel extends AbstractTableModel {
             fireTableDataChanged();
         }
     }
+
+    public Article getSelectedArticle()
+    {
+        //TODO
+        return null;
+    }
 }
