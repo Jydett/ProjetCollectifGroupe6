@@ -51,6 +51,6 @@ public class SwingViewFactory implements ViewFactory {
     @Override
     public <V> V getView(Class<V> viewClass) {
         //noinspection unchecked
-        return (V) viewMaps.getOrDefault(viewClass.getSimpleName(), () -> viewNotFound(viewClass));
+        return (V) viewMaps.getOrDefault(viewClass.getSimpleName(), () -> viewNotFound(viewClass)).get();
     }
 }
