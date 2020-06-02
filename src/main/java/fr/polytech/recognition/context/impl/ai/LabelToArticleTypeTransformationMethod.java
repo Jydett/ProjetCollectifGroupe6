@@ -44,9 +44,8 @@ public class LabelToArticleTypeTransformationMethod implements TransformationMet
             while(articleIterator.hasNext()) {
                 Article article = articleIterator.next();
                 String articleName = article.getName();
-                System.out.println("db article name : " + articleName);
                 // if article type matches label
-                if (prediction.getObject().compareToIgnoreCase(articleName)==0) foundArticle.put(article, prediction.getValue());
+                if (prediction.getObject().toLowerCase().contains(articleName.toLowerCase())) foundArticle.put(article, prediction.getValue());
             }
         }
         return foundArticle;
