@@ -66,11 +66,9 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
             ResultTable.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    if(ResultTable.getSelectedRow() > 0)
+                    if(ResultTable.getSelectedRow() != -1)
                     {
-                        ArticleTableModel atm = (ArticleTableModel) ResultTable.getModel();
-                        Article artSelected = atm.getSelectedArticle(ResultTable.getSelectedRow());
-                        controller.getRooter().dispatchEvent(new ArticleClickedEvent(artSelected));
+                        controller.getRooter().dispatchEvent(new ArticleClickedEvent((Article) ResultTable.getValueAt(ResultTable.getSelectedRow(),0)));
                     }
                 }
             });
@@ -88,6 +86,7 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
                 preferredSize.height += insets.bottom;
                 ResultPanel.setMinimumSize(preferredSize);
                 ResultPanel.setPreferredSize(preferredSize);
+
             }
         }
 
@@ -102,20 +101,29 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
         DefaultTableModel tableMod = (DefaultTableModel) ResultTable.getModel();
         tableMod.setRowCount(0); // Clear the Table of all of his rows
 
-        java.util.List<Object> listHeader = new ArrayList<Object>( );
-        listHeader.add("Article"); listHeader.add("Rechercher");listHeader.add("Probabilité");
-        tableMod.addRow(listHeader.toArray());
+       // java.util.List<Object> listHeader = new ArrayList<Object>( );
+        tableMod.addColumn("Id Article");
+        tableMod.addColumn("Nom de l'Article");
+        tableMod.addColumn("Lien vers un Vendeur");
+        tableMod.addColumn("Probabilité");
+      //  tableMod.insertRow(0, listHeader.toArray());
 
-        for(Map.Entry<Article, Float> entry : res.entrySet()){
+
+
+        for(Map.Entry<Article, Float> entry : res.entrySet())
+        {
             List<Object> listTable = new ArrayList<Object>();
-
+            listTable.add(entry.getKey());
             listTable.add(entry.getKey().getName()); // Article
             listTable.add(entry.getKey().getVendorLink()); // link of Article
             listTable.add(entry.getValue()); // Float
 
             tableMod.addRow(listTable.toArray());
         }
+
     }
+
+
 
     @Override
     public String getTitle() {//TODO i18n
