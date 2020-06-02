@@ -11,7 +11,7 @@ import static org.bytedeco.javacpp.opencv_imgproc.*;
 import java.awt.image.BufferedImage;
 
 /**
- * Useful image convertion methods to make an image comply with a model standard
+ * Utility class for image convertion methods to make an image comply with a model standard
  */
 public final class ImageConversion {
     /**
@@ -24,9 +24,13 @@ public final class ImageConversion {
      * @return the array [height][width][3] (every pixel and associated RGBs)
      */
     public static float[][][] imageToNormalizedRGBArray(BufferedImage image, int targetHeight, int targetWidth, float mean, float scale) {
+        // Matrix containing the RGB values [height][width][RGB]
         float[][][] result = new float[targetHeight][targetWidth][3];
+        // Image conversion
         IplImage convertedImage = convertImage(image);
+        // Image resizing
         IplImage resizedImage = resizeImage(targetWidth, targetHeight, convertedImage);
+        // Conversion to float matrix + mean/scale pixel treatment
         for (int pixy = 0; pixy <  resizedImage.height() ; pixy++) {
             for (int pixx = 0 ; pixx < resizedImage.width() ; pixx++) {
                 CvScalar pixel = cvGet2D(resizedImage, pixy, pixx);
@@ -38,7 +42,7 @@ public final class ImageConversion {
         return result;
     }
     /**
-     * Convert a buffered image to IplImage
+     * Converts a buffered image to IplImage
      * @param image the image to convert
      * @return the newly created IplImage
      */
