@@ -68,7 +68,7 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
                     if(ResultTable.getSelectedRow() > 0)
                     {
                         ArticleTableModel atm = (ArticleTableModel) ResultTable.getModel();
-                        Article artSelected = atm.getSelectedArticle();
+                        Article artSelected = atm.getSelectedArticle(ResultTable.getSelectedRow());
                         controller.getRooter().dispatchEvent(new ArticleClickedEvent(artSelected));
                     }
                 }
