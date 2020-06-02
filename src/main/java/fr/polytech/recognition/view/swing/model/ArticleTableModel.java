@@ -3,10 +3,7 @@ package fr.polytech.recognition.view.swing.model;
 import fr.polytech.recognition.model.database.Article;
 
 import javax.swing.table.AbstractTableModel;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ArticleTableModel extends AbstractTableModel {
 

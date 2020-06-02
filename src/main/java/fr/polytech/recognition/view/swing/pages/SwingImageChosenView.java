@@ -100,6 +100,7 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
 
     public void afficherArticleList(Map<Article, Float> res){
         DefaultTableModel tableMod = (DefaultTableModel) ResultTable.getModel();
+        //ArticleTableModel tableMod = (ArticleTableModel) ResultTable.getModel();
         tableMod.setRowCount(0); // Clear the Table of all of his rows
 
         java.util.List<Object> listHeader = new ArrayList<Object>( );
