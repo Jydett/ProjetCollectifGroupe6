@@ -9,6 +9,10 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Optional;
 
+/**
+ * Classe abstraite assurant la gestion des données présentes dans la BDD
+ *
+ */
 public abstract class HibernateDao<Id extends Serializable, Type extends Identifiable<Id>> {
 
     protected final String className;

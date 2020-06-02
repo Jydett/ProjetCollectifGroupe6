@@ -7,7 +7,10 @@ import org.hibernate.Session;
 
 import java.util.Collection;
 import java.util.Optional;
-
+/**
+ * Implémentation de l'interface ArticleDao
+ *
+ */
 public class HibernateArticleDao extends HibernateDao<Long, Article> implements ArticleDao {
 
     public HibernateArticleDao(Session hibernateSession) {
