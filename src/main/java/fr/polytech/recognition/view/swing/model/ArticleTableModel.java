@@ -3,13 +3,15 @@ package fr.polytech.recognition.view.swing.model;
 import fr.polytech.recognition.model.database.Article;
 
 import javax.swing.table.AbstractTableModel;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ArticleTableModel extends AbstractTableModel {
 
     public static final int CONTENT_COLUMN = 1;
-    private Map<Article, Float> resMap = new HashMap<>();
+    private LinkedHashMap<Article, Float> resMap = new LinkedHashMap<>();
 
     private static final String[] HEADERS = {"Article", "Probabilité"};
 
@@ -33,16 +35,16 @@ public class ArticleTableModel extends AbstractTableModel {
         return null;
     }
 
-    public void addAll(Map<Article, Float> resMap){
+    public void addAll(LinkedHashMap<Article, Float> resMap){
         if(resMap != null){
             this.resMap = resMap;
             fireTableDataChanged();
         }
     }
 
-    public Article getSelectedArticle()
+    public Article getSelectedArticle(int rowSelected)
     {
-        //TODO
-        return null;
+        Article artSelected = (Article) new ArrayList<>(resMap.keySet()).get(rowSelected);
+        return artSelected;
     }
 }
