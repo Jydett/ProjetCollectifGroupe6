@@ -126,7 +126,7 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
 
     @Override
     public String getTitle() {//TODO i18n
-        return "    Analyser l'image    ";
+        return "    Résultat de l'analyse    ";
     }
 
     @Override
