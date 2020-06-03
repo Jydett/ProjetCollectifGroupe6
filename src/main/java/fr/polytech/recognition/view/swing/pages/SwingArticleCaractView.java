@@ -33,6 +33,17 @@ public class SwingArticleCaractView extends SwingView implements ArticleCaractVi
         imageCharacter = new JLabel();
         scrollPaneInCharacter = new JScrollPane();
         CharacterTable = new JTable();
+        DefaultTableModel tableModel = new DefaultTableModel() {
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }
+        };
+
+        CharacterTable.setModel(tableModel);
+
 //        btnSaveArticle = new JButton();
 //        btnDeleteArticle = new JButton();
         //======== CharacterPanel ========

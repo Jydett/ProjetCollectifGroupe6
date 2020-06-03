@@ -36,6 +36,16 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
         imageChosen = new JLabel();
         scrollPaneInResult = new JScrollPane();
         ResultTable = new JTable();
+        DefaultTableModel tableModel = new DefaultTableModel() {
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }
+        };
+
+        ResultTable.setModel(tableModel);
         //======== ResultPanel ========
         {
             ResultPanel.setLayout(null);
@@ -108,7 +118,7 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
         tableMod.addColumn("Probabilité");
       //  tableMod.insertRow(0, listHeader.toArray());
 
-        System.out.println("SIZE RES ============== " + res.entrySet().size());
+
 
         for(Map.Entry<Article, Float> entry : res.entrySet())
         {
