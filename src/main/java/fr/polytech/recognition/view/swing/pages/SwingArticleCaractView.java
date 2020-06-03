@@ -139,6 +139,46 @@ public class SwingArticleCaractView extends SwingView implements ArticleCaractVi
         return PageOrder.ARTICLE_CHARAC_ORDER;
     }
 
+    /**
+     * Affiche l'image sélectionnée sur la page ChooseImage
+     * @param fileSelected Image sélectionnée
+     */
+    public void setImageCharacter(File fileSelected){
+        String path = fileSelected.getAbsolutePath();
+        ImageIcon icon=new ImageIcon(path);
+
+        // Scale the picture proportionally
+        int imgWidth = icon.getIconWidth();
+        int imgHeight = icon.getIconHeight();
+        int conWidth = getWidth();
+        int conHeight = getHeight();
+        int reImgWidth;
+        int reImgHeight;
+        if(imgWidth / imgHeight >= conWidth / conHeight){
+            if(imgWidth > conWidth){
+                reImgWidth = conWidth;
+                reImgHeight = imgHeight * reImgWidth / imgWidth;
+            }else{
+                reImgWidth = imgWidth;
+                reImgHeight = imgHeight;
+            }
+        }else{
+            if(imgWidth > conWidth){
+                reImgHeight = conHeight;
+                reImgWidth = imgWidth * reImgHeight / imgHeight;
+            }else{
+                reImgWidth = imgWidth;
+                reImgHeight = imgHeight;
+            }
+        }
+        // Scale the picture proportionally
+        icon = new ImageIcon(icon.getImage().getScaledInstance(reImgWidth, reImgHeight, Image.SCALE_DEFAULT));
+
+        // put the image into ImageCharacter
+        imageCharacter.setIcon(icon);
+        imageCharacter.setText("");
+    }
+
     private JPanel CharacterPanel;
     private JSplitPane splitPaneInCharacter;
     private JLabel imageCharacter;
