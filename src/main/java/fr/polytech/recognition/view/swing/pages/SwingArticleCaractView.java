@@ -33,6 +33,17 @@ public class SwingArticleCaractView extends SwingView implements ArticleCaractVi
         imageCharacter = new JLabel();
         scrollPaneInCharacter = new JScrollPane();
         CharacterTable = new JTable();
+        DefaultTableModel tableModel = new DefaultTableModel() {
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }
+        };
+
+        CharacterTable.setModel(tableModel);
+
 //        btnSaveArticle = new JButton();
 //        btnDeleteArticle = new JButton();
         //======== CharacterPanel ========
@@ -114,10 +125,14 @@ public class SwingArticleCaractView extends SwingView implements ArticleCaractVi
     {
         DefaultTableModel tableMod = (DefaultTableModel) CharacterTable.getModel();
         tableMod.setRowCount(0); // Clear the Table of all of his rows
+        tableMod.setColumnCount(0);
 
-        java.util.List<Object> listHeader = new ArrayList<Object>( );
-        listHeader.add("Article"); listHeader.add("Nom"); listHeader.add("Prix"); listHeader.add("Lien Vendeur");
-        tableMod.addRow(listHeader.toArray());
+        // java.util.List<Object> listHeader = new ArrayList<Object>( );
+        tableMod.addColumn("Id Article");
+        tableMod.addColumn("Nom de l'Article");
+        tableMod.addColumn("Prix");
+        tableMod.addColumn("Lien du Vendeur");
+        //  tableMod.insertRow(0, listHeader.toArray());
 
         List<Object> listTable = new ArrayList<Object>();
 
@@ -131,7 +146,7 @@ public class SwingArticleCaractView extends SwingView implements ArticleCaractVi
 
     @Override
     public String getTitle() {
-        return "     Caractéristique un article     ";
+        return "     Caractéristique de l'article     ";
     }
 
     @Override
