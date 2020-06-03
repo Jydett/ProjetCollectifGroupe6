@@ -1,6 +1,8 @@
 package fr.polytech.recognition.view.swing.pages;
 
 import fr.polytech.recognition.controller.ImageChosenController;
+import fr.polytech.recognition.event.events.ArticleClickedEvent;
+import fr.polytech.recognition.event.events.ImageChoosenEvent;
 import fr.polytech.recognition.model.database.Article;
 import fr.polytech.recognition.view.ImageChosenView;
 import fr.polytech.recognition.view.swing.SwingView;
@@ -11,6 +13,9 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -58,6 +63,16 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
             splitPaneInResult.setBounds(0, 0, 915, 470);
             splitPaneInResult.setDividerLocation(400);
 
+            ResultTable.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    if(ResultTable.getSelectedRow() != -1)
+                    {
+                        controller.getRooter().dispatchEvent(new ArticleClickedEvent((Article) ResultTable.getValueAt(ResultTable.getSelectedRow(),0)));
+                    }
+                }
+            });
+
             {
                 // compute preferred size
                 Dimension preferredSize = new Dimension();
@@ -71,6 +86,7 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
                 preferredSize.height += insets.bottom;
                 ResultPanel.setMinimumSize(preferredSize);
                 ResultPanel.setPreferredSize(preferredSize);
+
             }
         }
 
@@ -85,20 +101,29 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
         DefaultTableModel tableMod = (DefaultTableModel) ResultTable.getModel();
         tableMod.setRowCount(0); // Clear the Table of all of his rows
 
-        java.util.List<Object> listHeader = new ArrayList<Object>( );
-        listHeader.add("Article"); listHeader.add("Rechercher");listHeader.add("Probabilité");
-        tableMod.addRow(listHeader.toArray());
+       // java.util.List<Object> listHeader = new ArrayList<Object>( );
+        tableMod.addColumn("Id Article");
+        tableMod.addColumn("Nom de l'Article");
+        tableMod.addColumn("Lien vers un Vendeur");
+        tableMod.addColumn("Probabilité");
+      //  tableMod.insertRow(0, listHeader.toArray());
 
-        for(Map.Entry<Article, Float> entry : res.entrySet()){
+
+
+        for(Map.Entry<Article, Float> entry : res.entrySet())
+        {
             List<Object> listTable = new ArrayList<Object>();
-
+            listTable.add(entry.getKey());
             listTable.add(entry.getKey().getName()); // Article
             listTable.add(entry.getKey().getVendorLink()); // link of Article
             listTable.add(entry.getValue()); // Float
 
             tableMod.addRow(listTable.toArray());
         }
+
     }
+
+
 
     @Override
     public String getTitle() {//TODO i18n
@@ -113,5 +138,45 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
     @Override
     public Icon getIcon() {
         return super.getIcon();
+    }
+
+    /**
+     * Affiche l'image sélectionnée sur la page ChooseImage
+     * @param fileSelected Image sélectionnée
+     */
+    public void setImageChosen(File fileSelected){
+        String path = fileSelected.getAbsolutePath();
+        ImageIcon icon=new ImageIcon(path);
+
+        // Scale the picture proportionally
+        int imgWidth = icon.getIconWidth();
+        int imgHeight = icon.getIconHeight();
+        int conWidth = getWidth();
+        int conHeight = getHeight();
+        int reImgWidth;
+        int reImgHeight;
+        if(imgWidth / imgHeight >= conWidth / conHeight){
+            if(imgWidth > conWidth){
+                reImgWidth = conWidth;
+                reImgHeight = imgHeight * reImgWidth / imgWidth;
+            }else{
+                reImgWidth = imgWidth;
+                reImgHeight = imgHeight;
+            }
+        }else{
+            if(imgWidth > conWidth){
+                reImgHeight = conHeight;
+                reImgWidth = imgWidth * reImgHeight / imgHeight;
+            }else{
+                reImgWidth = imgWidth;
+                reImgHeight = imgHeight;
+            }
+        }
+        // Scale the picture proportionally
+        icon = new ImageIcon(icon.getImage().getScaledInstance(reImgWidth, reImgHeight, Image.SCALE_DEFAULT));
+
+        // put the image into ImageChosen
+        imageChosen.setIcon(icon);
+        imageChosen.setText("");
     }
 }

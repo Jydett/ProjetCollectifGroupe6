@@ -1,7 +1,6 @@
 package fr.polytech.recognition.controller.infra;
 
 import fr.polytech.recognition.controller.Controller;
-import fr.polytech.recognition.controller.infra.di.Inject;
 import fr.polytech.recognition.controller.infra.di.InjectionManager;
 import fr.polytech.recognition.exception.RegistrationError;
 import fr.polytech.recognition.model.Model;
@@ -9,8 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.reflections.Reflections;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Optional;
@@ -19,7 +16,7 @@ import java.util.function.Supplier;
 
 public final class ControllerRegistry {
 
-    private static final HashMap<String, LazyController> CONTROLLERS = new HashMap<>();
+    private final HashMap<String, LazyController> CONTROLLERS = new HashMap<>();
 
     public ControllerRegistry(Router router) {
         registerController(router);
@@ -90,7 +87,6 @@ public final class ControllerRegistry {
                     throw new RegistrationError("An error has occured while creating the controller " + constructor.getDeclaringClass().getSimpleName(), e);
                 }
                 InjectionManager.injectDependencies(instance);
-                instance.init();
             }
             return instance;
         }

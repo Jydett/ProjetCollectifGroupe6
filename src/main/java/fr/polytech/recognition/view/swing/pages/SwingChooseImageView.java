@@ -117,6 +117,10 @@ public class SwingChooseImageView extends SwingView implements ChooseImageView {
         return super.getIcon();
     }
 
+    /**
+     * Affiche l'image sélectionnée sur la page ChooseImage
+     * @param fileSelected Image sélectionnée
+     */
     public void setImageLabel(File fileSelected){
         String path = fileSelected.getAbsolutePath();
         ImageIcon icon=new ImageIcon(path);
@@ -150,6 +154,7 @@ public class SwingChooseImageView extends SwingView implements ChooseImageView {
 
         // put the image into imageLabel
         imageLabel.setIcon(icon);
+        imageLabel.setText("");
     }
 
 }

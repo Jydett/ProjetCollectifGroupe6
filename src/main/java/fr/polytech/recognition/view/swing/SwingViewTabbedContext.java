@@ -27,7 +27,11 @@ public class SwingViewTabbedContext implements ViewContext {
         frame = new TabbedFrame(this);
         Iterator<? extends Supplier<Controller<?, ?>>> it = registry.iterator();
         while (it.hasNext()) {
-            controllers.add(it.next().get());
+            Controller<?, ?> controller = it.next().get();
+            if (! controller.isInitiliazed()) {
+                controller.init();
+            }
+            controllers.add(controller);
         }
         controllers.sort(Comparator.comparingInt(c -> ((SwingView) c.getCurrentView()).priority()));
         for (Controller<?, ?> controller : controllers) {
@@ -38,7 +42,6 @@ public class SwingViewTabbedContext implements ViewContext {
         frame.pack();
     }
 
-    //TODO pas faire ca ici ?
     @Override
     public void switchView(Controller ctrl) {
         //apeller depuis le controller -> on doit

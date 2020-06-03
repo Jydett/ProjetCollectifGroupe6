@@ -3,6 +3,10 @@ package fr.polytech.recognition.ai;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+/**
+ * Represents a prediction, object associated with a score ranging from 0 to 1.
+ * @param <O> The object to associate with the score
+ */
 @AllArgsConstructor
 @Getter
 public class Prediction<O> implements Comparable<Prediction<O>> {

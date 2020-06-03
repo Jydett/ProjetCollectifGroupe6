@@ -25,7 +25,7 @@ public class TensorflowClassifier implements Classifier<String> {
     private float scale;
 
     /**
-     *
+     * Classifier for a tensorflow model
      * @param modelPathDef a path to your model pb file
      * @param labelsPathDef a path to your model list of labels
      * @param modelImageWidth Image width that is acceptable by the model
@@ -54,7 +54,7 @@ public class TensorflowClassifier implements Classifier<String> {
 
     @Override
     public TensorflowRecognitionResult prediction(BufferedImage image) {
-        // we only give one image to the model hence the size
+        // [images][imageHeight][imageWidth][RGB] but we only give one image to the model hence the size
         float [][][][] imageData = new float[1][imageHeight][imageWidth][3];
         imageData[0] = ImageConversion.imageToNormalizedRGBArray(image, imageHeight, imageWidth, mean, scale);
 

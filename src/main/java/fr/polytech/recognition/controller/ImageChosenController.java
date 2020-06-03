@@ -4,6 +4,7 @@ import fr.polytech.recognition.controller.infra.ControllerRegistration;
 import fr.polytech.recognition.controller.infra.Router;
 import fr.polytech.recognition.event.EventHandler;
 import fr.polytech.recognition.event.events.ClassificationFinishedEvent;
+import fr.polytech.recognition.event.events.ImageChoosenEvent;
 import fr.polytech.recognition.model.ImageChosenModel;
 import fr.polytech.recognition.model.database.Article;
 import fr.polytech.recognition.view.ImageChosenView;
@@ -23,7 +24,7 @@ public class ImageChosenController extends Controller<ImageChosenView, ImageChos
         super(rooter, model);
     }
 
-    public void init() {
+    protected void initialize() {
         setView(rooter.createView(ImageChosenView.class));
     }
 
@@ -31,6 +32,15 @@ public class ImageChosenController extends Controller<ImageChosenView, ImageChos
     public void onRecognitionResult(ClassificationFinishedEvent<Article> event) {
         System.out.println("Resultat recu : " + event.toString());
         getCurrentView().afficherArticleList(event.getRes());
+    }
+
+    /**
+     * Event déclenché quand on choisit une image sur la page ChooseImage. Appelle setImageCharacter()
+     * @param event Contient le fichier selectionné sur la page ChooseImage
+     */
+    @EventHandler
+    public void onImageChosen(ImageChoosenEvent event) {
+        getCurrentView().setImageChosen(event.getFileSelected());
     }
 
     public String getSelectedImage() {

@@ -79,14 +79,18 @@ public class Router {
         eventManager = new EventManager(registry);
         eventManager.register(classifierContext);
         InjectionManager.injectDependencies(classifierContext.getTransformationMethod());
-        currentController = registry.getController("chooseImage").get();
-        getViewContext().switchView(currentController);
+        changeController(registry.getController("chooseImage").get());
     }
 
     public void changeController(Controller controller) {
         LOGGER.info("Controller changed to " + controller.getClass().getSimpleName());
-        currentController.disposeView();
+        if (currentController != null) {
+            currentController.disposeView();
+        }
         currentController = controller;
+        if (! controller.isInitiliazed()) {
+            controller.init();
+        }
         getViewContext().switchView(currentController);
     }
 
