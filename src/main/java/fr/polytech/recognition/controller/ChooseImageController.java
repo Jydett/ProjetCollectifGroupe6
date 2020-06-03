@@ -50,6 +50,6 @@ public class ChooseImageController extends Controller<ChooseImageView, ChooseIma
      */
     public void imageChoosen(File selectedFile) {
         rooter.dispatchEvent(new ImageChoosenEvent(selectedFile));
-        //rooter.nextController("imageChosen"); // Par @Yuman
+        rooter.nextController("imageChosen"); // Par @Yuman
     }
 }
