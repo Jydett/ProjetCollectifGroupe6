@@ -100,22 +100,21 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
     public void afficherArticleList(Map<Article, Float> res){
         DefaultTableModel tableMod = (DefaultTableModel) ResultTable.getModel();
         tableMod.setRowCount(0); // Clear the Table of all of his rows
+        tableMod.setColumnCount(0);
 
        // java.util.List<Object> listHeader = new ArrayList<Object>( );
         tableMod.addColumn("Id Article");
         tableMod.addColumn("Nom de l'Article");
-        tableMod.addColumn("Lien vers un Vendeur");
         tableMod.addColumn("Probabilité");
       //  tableMod.insertRow(0, listHeader.toArray());
 
-
+        System.out.println("SIZE RES ============== " + res.entrySet().size());
 
         for(Map.Entry<Article, Float> entry : res.entrySet())
         {
             List<Object> listTable = new ArrayList<Object>();
             listTable.add(entry.getKey());
             listTable.add(entry.getKey().getName()); // Article
-            listTable.add(entry.getKey().getVendorLink()); // link of Article
             listTable.add(entry.getValue()); // Float
 
             tableMod.addRow(listTable.toArray());
