@@ -22,11 +22,11 @@ import java.util.Map;
 
 /**
  * La Swing vue de la tabbed panel Image Chosen
+ * Cette vue pour afficher l'image choisi et les resultats de la reconnaissance
  */
 public class SwingImageChosenView extends SwingView implements ImageChosenView {
 
     private final ImageChosenController controller;
-
 
     public SwingImageChosenView(ImageChosenController controller) {
         this.controller = controller;

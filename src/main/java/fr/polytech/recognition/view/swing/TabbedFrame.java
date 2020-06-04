@@ -6,10 +6,17 @@ import lombok.Getter;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * La Swing vue de la whole tabbed frame
+ */
 public class TabbedFrame extends JFrame {
 
     private final SingleSelectionWithConfirmationModel selectionModel;
 
+    /**
+     * Decider l'appearance de Swing frame: la taille, le front, le titre, les panels , etc
+     * @param context SwingViewTabbedContext
+     */
     public TabbedFrame(SwingViewTabbedContext context) {
         tabbedPanel = new JTabbedPane();
         selectionModel = new SingleSelectionWithConfirmationModel() {
@@ -30,6 +37,9 @@ public class TabbedFrame extends JFrame {
         tabbedPanel.setBounds(0, 0, 920, 580);
     }
 
+    /**
+     * Decider la taille de la frame
+     */
     @Override
     public void pack() {
         Dimension preferredSize = new Dimension();

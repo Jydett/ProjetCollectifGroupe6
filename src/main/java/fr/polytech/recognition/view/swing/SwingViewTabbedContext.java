@@ -12,6 +12,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Supplier;
 
+/**
+ * Décider afficher lequel tabbed panel
+ */
 public class SwingViewTabbedContext implements ViewContext {
     @Getter
     public TabbedFrame frame;
@@ -22,6 +25,10 @@ public class SwingViewTabbedContext implements ViewContext {
         FlatCyanLightIJTheme.install();
     }
 
+    /**
+     * Enregistrer les controlleurs de la vue dans la liste : controllers
+     * @param registry controller registry list
+     */
     @Override
     public void init(ControllerRegistry registry) {
         frame = new TabbedFrame(this);
@@ -42,6 +49,10 @@ public class SwingViewTabbedContext implements ViewContext {
         frame.pack();
     }
 
+    /**
+     * Choisir la vue pour afficher dans le tabbed panel
+     * @param ctrl Contrôleur de la vue
+     */
     @Override
     public void switchView(Controller ctrl) {
         //apeller depuis le controller -> on doit
@@ -49,6 +60,11 @@ public class SwingViewTabbedContext implements ViewContext {
         frame.switchView(controllers.indexOf(ctrl));
     }
 
+    /**
+     * Choisir la vue pour afficher dans le tabbed panel
+     * @param index le numéro d'ordre du tabbed panel
+     * @return succès : true ; échec : false
+     */
     public boolean switchView(int index) {
         //apeller depuis la vue, on doit changer de controller
         Controller<?, ?> controller = controllers.get(index);

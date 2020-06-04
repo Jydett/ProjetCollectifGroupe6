@@ -13,6 +13,7 @@ import java.io.File;
 
 /**
  * La Swing vue de la tabbed panel Choose Image
+ * Cette vue pour choisir une image et lancer la reconnaissance
  */
 public class SwingChooseImageView extends SwingView implements ChooseImageView {
     private final ChooseImageController controller;

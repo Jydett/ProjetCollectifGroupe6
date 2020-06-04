@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  * La Swing vue de la tabbed panel Article caractéristiques
+ * Cette vue pour afficher une article choisi  dans la 2ème panel et ses caracteristiques
  */
 public class SwingArticleCaractView extends SwingView implements ArticleCaractView {
 
