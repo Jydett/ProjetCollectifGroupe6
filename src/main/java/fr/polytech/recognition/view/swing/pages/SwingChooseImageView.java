@@ -22,10 +22,18 @@ public class SwingChooseImageView extends SwingView implements ChooseImageView {
         initialize();
     }
 
+    /**
+     * Quand le bouton d'importer une image est cliqué, ouvrir la fenetre du fichier
+     * @param e Button clicked action event
+     */
     private void btnImportActionPerformed(ActionEvent e) {
         controller.onImportButtonClicked(e);
     }
 
+    /**
+     * Quand le bouton de lancer la reconnaissance est cliqué, lancer la reconnaissance d'image
+     * @param e Button clicked action event
+     */
     private void btnLanceActionPerformed(ActionEvent e) {
         controller.onLanceButtonClicked(e);
     }
@@ -61,6 +69,9 @@ public class SwingChooseImageView extends SwingView implements ChooseImageView {
             //---- btnLance ----
             btnLance.setText("Lancer la reconnaissance");
             btnLance.setFont(new Font("Avenir", Font.PLAIN, 16));
+            /**
+             * btnLanceAction
+             */
             btnLance.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     btnLanceActionPerformed(e);

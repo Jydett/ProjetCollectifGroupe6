@@ -28,8 +28,6 @@ public class ArticleCaractController extends Controller<ArticleCaractView, Artic
         setView(rooter.createView(ArticleCaractView.class));
     }
 
-
-
     /**
      * Event déclenché quand on clique sur un article sur la page ImageChosen. Appelle populateArticleTab
      * @param event Contient l'article selectionné sur la page ImageChosen

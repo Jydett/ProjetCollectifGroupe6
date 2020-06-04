@@ -1,5 +1,6 @@
 package fr.polytech.recognition.controller;
 
+import fr.polytech.recognition.ai.impl.TensorflowClassifier;
 import fr.polytech.recognition.controller.infra.ControllerRegistration;
 import fr.polytech.recognition.controller.infra.Router;
 import fr.polytech.recognition.controller.infra.di.Inject;
@@ -8,7 +9,9 @@ import fr.polytech.recognition.dao.article.ArticleDao;
 import fr.polytech.recognition.model.ChooseImageModel;
 import fr.polytech.recognition.view.ChooseImageView;
 
+import javax.imageio.ImageIO;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 
 @ControllerRegistration(name = "chooseImage")
@@ -21,6 +24,9 @@ public class ChooseImageController extends Controller<ChooseImageView, ChooseIma
         super(rooter, model);
     }
 
+    /**
+     * Créer la vue de ChooseImageView
+     */
     protected void initialize() {
         setView(rooter.createView(ChooseImageView.class));
     }

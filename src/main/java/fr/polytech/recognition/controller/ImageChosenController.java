@@ -24,10 +24,17 @@ public class ImageChosenController extends Controller<ImageChosenView, ImageChos
         super(rooter, model);
     }
 
+    /**
+     * Créer la vue de ImageChosenView
+     */
     protected void initialize() {
         setView(rooter.createView(ImageChosenView.class));
     }
 
+    /**
+     * Event déclenché quand on a le resultat de la reconnaissance
+     * @param event Contient les résultat de la réconnaissance : Res est un HashMap contient les articles et leur probalilités.
+     */
     @EventHandler
     public void onRecognitionResult(ClassificationFinishedEvent<Article> event) {
         System.out.println("Resultat recu : " + event.toString());
