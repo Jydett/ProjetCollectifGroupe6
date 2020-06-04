@@ -16,10 +16,12 @@ import java.util.List;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * La Swing vue de la tabbed panel Article caractéristiques
+ */
 public class SwingArticleCaractView extends SwingView implements ArticleCaractView {
 
     private final ArticleCaractController controller;
-
 
     public SwingArticleCaractView(ArticleCaractController controller) {
         this.controller = controller;
@@ -27,7 +29,7 @@ public class SwingArticleCaractView extends SwingView implements ArticleCaractVi
     }
 
     public void initialize() {
-        CharacterPanel = this; //todo a refactor
+        CharacterPanel = this;
 
         splitPaneInCharacter = new JSplitPane();
         imageCharacter = new JLabel();
@@ -42,7 +44,7 @@ public class SwingArticleCaractView extends SwingView implements ArticleCaractVi
             }
         };
 
-        CharacterTable.setModel(tableModel);
+        CharacterTable.setModel(tableModel); //refactor the CharacterTable
 
 //        btnSaveArticle = new JButton();
 //        btnDeleteArticle = new JButton();

@@ -20,6 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * La Swing vue de la tabbed panel Image Chosen
+ */
 public class SwingImageChosenView extends SwingView implements ImageChosenView {
 
     private final ImageChosenController controller;
@@ -31,7 +34,7 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
     }
 
     public void initialize() {
-        ResultPanel = this; //TOdo a refactor
+        ResultPanel = this;
         splitPaneInResult = new JSplitPane();
         imageChosen = new JLabel();
         scrollPaneInResult = new JScrollPane();
@@ -45,7 +48,7 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
             }
         };
 
-        ResultTable.setModel(tableModel);
+        ResultTable.setModel(tableModel); // table model refactor
         //======== ResultPanel ========
         {
             ResultPanel.setLayout(null);
@@ -107,6 +110,10 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
     private JScrollPane scrollPaneInResult;
     private JTable ResultTable;
 
+    /**
+     * Afficher les resultats de la réconnaisance dans le ResultTable
+     * @param res C'est une HashMap contient les articles avec leur chiffre de probabilité.
+     */
     public void afficherArticleList(Map<Article, Float> res){
         DefaultTableModel tableMod = (DefaultTableModel) ResultTable.getModel();
         tableMod.setRowCount(0); // Clear the Table of all of his rows
@@ -117,8 +124,6 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
         tableMod.addColumn("Nom de l'Article");
         tableMod.addColumn("Probabilité");
       //  tableMod.insertRow(0, listHeader.toArray());
-
-
 
         for(Map.Entry<Article, Float> entry : res.entrySet())
         {
@@ -131,8 +136,6 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
         }
 
     }
-
-
 
     @Override
     public String getTitle() {//TODO i18n

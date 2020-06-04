@@ -11,9 +11,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+/**
+ * La Swing vue de la tabbed panel Choose Image
+ */
 public class SwingChooseImageView extends SwingView implements ChooseImageView {
     private final ChooseImageController controller;
     private final JFileChooser jFileChooser = new JFileChooser();
+    // filter of filename : jpg and jpeg
     private static final FileNameExtensionFilter IMG_FILTER = new FileNameExtensionFilter(
             "JPG & JPEG Images", "jpg", "jpeg");
 
@@ -39,7 +43,7 @@ public class SwingChooseImageView extends SwingView implements ChooseImageView {
     }
 
     public void initialize() {
-        ImportPanel = this; //todo a refactor
+        ImportPanel = this;
         btnImport = new JButton();
         imageLabel = new JLabel();
         btnLance = new JButton();
