@@ -36,6 +36,16 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
         imageChosen = new JLabel();
         scrollPaneInResult = new JScrollPane();
         ResultTable = new JTable();
+        DefaultTableModel tableModel = new DefaultTableModel() {
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }
+        };
+
+        ResultTable.setModel(tableModel);
         //======== ResultPanel ========
         {
             ResultPanel.setLayout(null);
@@ -100,11 +110,11 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
     public void afficherArticleList(Map<Article, Float> res){
         DefaultTableModel tableMod = (DefaultTableModel) ResultTable.getModel();
         tableMod.setRowCount(0); // Clear the Table of all of his rows
+        tableMod.setColumnCount(0);
 
        // java.util.List<Object> listHeader = new ArrayList<Object>( );
         tableMod.addColumn("Id Article");
         tableMod.addColumn("Nom de l'Article");
-        tableMod.addColumn("Lien vers un Vendeur");
         tableMod.addColumn("Probabilité");
       //  tableMod.insertRow(0, listHeader.toArray());
 
@@ -115,7 +125,6 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
             List<Object> listTable = new ArrayList<Object>();
             listTable.add(entry.getKey());
             listTable.add(entry.getKey().getName()); // Article
-            listTable.add(entry.getKey().getVendorLink()); // link of Article
             listTable.add(entry.getValue()); // Float
 
             tableMod.addRow(listTable.toArray());
@@ -127,7 +136,7 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
 
     @Override
     public String getTitle() {//TODO i18n
-        return "    Analyser l'image    ";
+        return "    Résultat de l'analyse    ";
     }
 
     @Override

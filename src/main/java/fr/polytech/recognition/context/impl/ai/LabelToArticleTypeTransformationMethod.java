@@ -28,7 +28,6 @@ public class LabelToArticleTypeTransformationMethod implements TransformationMet
     @Override
     public Map<Article, Float> apply(RecognitionResult<String> recognitionResult) {
         Map<Article, Float> foundArticle = new HashMap<Article, Float>();
-
         Session session = new Configuration().configure().buildSessionFactory().openSession();
         HibernateArticleDao dao = new HibernateArticleDao(session);
         Collection<Article> articles = dao.getAll();
@@ -38,14 +37,18 @@ public class LabelToArticleTypeTransformationMethod implements TransformationMet
         while (predIt.hasNext()) {
             Prediction<String> prediction = predIt.next();
             // remove bad predictions
-            if (prediction.getValue() < 0.3) continue;
+            if (prediction.getValue() < 0.1) continue;
             Iterator<Article> articleIterator = articles.iterator();
             // for every article type
             while(articleIterator.hasNext()) {
                 Article article = articleIterator.next();
                 String articleName = article.getName();
                 // if article type matches label
-                if (prediction.getObject().toLowerCase().contains(articleName.toLowerCase())) foundArticle.put(article, prediction.getValue());
+                if (prediction.getObject().toLowerCase().contains(articleName.toLowerCase()))
+                {
+                    foundArticle.put(article, prediction.getValue());
+                }
+
             }
         }
         return foundArticle;
