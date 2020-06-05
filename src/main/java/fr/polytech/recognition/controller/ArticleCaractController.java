@@ -4,17 +4,9 @@ import fr.polytech.recognition.controller.infra.ControllerRegistration;
 import fr.polytech.recognition.controller.infra.Router;
 import fr.polytech.recognition.event.EventHandler;
 import fr.polytech.recognition.event.events.ArticleClickedEvent;
-import fr.polytech.recognition.event.events.ClassificationFinishedEvent;
 import fr.polytech.recognition.event.events.ImageChoosenEvent;
 import fr.polytech.recognition.model.ArticleCaractModel;
-import fr.polytech.recognition.model.database.Article;
 import fr.polytech.recognition.view.ArticleCaractView;
-
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 @ControllerRegistration(name = "articleCaract")
 public class ArticleCaractController extends Controller<ArticleCaractView, ArticleCaractModel> {

@@ -3,8 +3,6 @@ package fr.polytech.recognition.event;
 import fr.polytech.recognition.controller.Controller;
 import fr.polytech.recognition.controller.infra.ControllerRegistration;
 import fr.polytech.recognition.controller.infra.ControllerRegistry;
-import fr.polytech.recognition.controller.infra.di.InjectionManager;
-import fr.polytech.recognition.exception.RegistrationError;
 import lombok.AllArgsConstructor;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;

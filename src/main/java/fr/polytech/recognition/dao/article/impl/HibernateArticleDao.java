@@ -5,7 +5,6 @@ import fr.polytech.recognition.dao.article.ArticleDao;
 import fr.polytech.recognition.model.database.Article;
 import org.hibernate.Session;
 
-import java.util.Collection;
 import java.util.Optional;
 /**
  * classe HibernateArticleDao

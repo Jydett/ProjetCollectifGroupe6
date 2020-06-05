@@ -9,7 +9,6 @@ import fr.polytech.recognition.dao.article.impl.HibernateArticleDao;
 import fr.polytech.recognition.model.database.Article;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
-import org.tensorflow.op.sparse.SparseReduceMax;
 
 import java.util.*;
 

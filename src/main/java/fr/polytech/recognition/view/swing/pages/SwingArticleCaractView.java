@@ -1,19 +1,15 @@
 package fr.polytech.recognition.view.swing.pages;
 
 import fr.polytech.recognition.controller.ArticleCaractController;
-import fr.polytech.recognition.controller.ImageChosenController;
 import fr.polytech.recognition.model.database.Article;
 import fr.polytech.recognition.view.ArticleCaractView;
 import fr.polytech.recognition.view.swing.SwingView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 /**

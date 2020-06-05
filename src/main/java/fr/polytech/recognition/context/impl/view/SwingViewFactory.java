@@ -2,7 +2,6 @@ package fr.polytech.recognition.context.impl.view;
 
 import fr.polytech.recognition.controller.ArticleCaractController;
 import fr.polytech.recognition.controller.ChooseImageController;
-import fr.polytech.recognition.controller.Controller;
 import fr.polytech.recognition.controller.ImageChosenController;
 import fr.polytech.recognition.controller.infra.ControllerRegistry;
 import fr.polytech.recognition.context.ViewFactory;

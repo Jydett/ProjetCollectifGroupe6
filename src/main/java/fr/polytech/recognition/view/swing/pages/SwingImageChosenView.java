@@ -2,17 +2,13 @@ package fr.polytech.recognition.view.swing.pages;
 
 import fr.polytech.recognition.controller.ImageChosenController;
 import fr.polytech.recognition.event.events.ArticleClickedEvent;
-import fr.polytech.recognition.event.events.ImageChoosenEvent;
 import fr.polytech.recognition.model.database.Article;
 import fr.polytech.recognition.view.ImageChosenView;
 import fr.polytech.recognition.view.swing.SwingView;
-import fr.polytech.recognition.view.swing.model.ArticleTableModel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;

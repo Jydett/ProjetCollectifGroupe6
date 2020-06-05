@@ -8,9 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
