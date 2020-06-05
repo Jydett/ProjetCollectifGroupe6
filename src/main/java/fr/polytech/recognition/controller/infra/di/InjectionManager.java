@@ -13,8 +13,8 @@ public class InjectionManager {
 
     private InjectionManager() {}
 
-    public static void register(String name, Object value) {
-        INJECTABLE.put(name, value);
+    public static void register(Class<?> registeredClass, Object value) {
+        INJECTABLE.put(registeredClass.getSimpleName(), value);
     }
 
     public static Object get(Class<?> key) {
