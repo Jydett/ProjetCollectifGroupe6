@@ -75,7 +75,7 @@ public class SwingImageChosenView extends SwingView implements ImageChosenView {
             ResultPanel.add(splitPaneInResult);
             splitPaneInResult.setBounds(0, 0, 915, 470);
             splitPaneInResult.setDividerLocation(400);
-
+            ResultTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             ResultTable.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
